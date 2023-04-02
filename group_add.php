@@ -3,7 +3,7 @@
 
 <head>
     <title> </title>
-    <link href="group_add.css" rel="stylesheet">
+    <link href="css/group_add.css" rel="stylesheet">
 </head>
 
 <body>
