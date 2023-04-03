@@ -1,0 +1,85 @@
+
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+html{
+    font-family: poppins;
+}
+
+*
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body{
+    font-size: 1.2rem;
+    background: #EEEEEE;
+}
+
+.heading{
+    background: #EEEEEE;
+    width: 50rem;
+    padding: 2.5rem;
+    margin: 5rem auto;
+    border-top: 0.5rem solid #00ADB5;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5) ;
+}
+
+.heading h2{
+    font-size: 1.5rem;
+    line-height:1.5rem;
+    padding:2rem;
+    text-align: center;
+}
+
+.inputname{
+    width: 90%;
+    position: relative;
+    margin: 0.7rem auto;
+}
+ion-icon{
+    padding: 0.5rem 0.7rem
+}
+
+.studname{
+    width: 45%;
+    padding: 0.5rem 0 0.5rem 2.5rem;
+}
+
+.inputname span{
+    margin-left: 2.1rem;
+}
+
+.allname{
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 2.5rem;
+}
+
+.inputname ion-icon{
+    position: absolute;
+    font-size: 1.1rem;
+    color: #00ADB5;
+    border-right: 0.1rem solid #cccccc;
+}
+
+.allname, .studname{
+    border:0.1rem solid #cccccc;
+    outline:none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+}
+
+.allname:hover, .studname:hover{
+    background-color: antiquewhite;
+}
+
+.allname:focus, .studname:focus{
+    border: 0.1rem solid #00ADB5;
+
+}
+
