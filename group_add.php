@@ -27,11 +27,11 @@ if (isset($_REQUEST['editGroup'])) {
 </head>
 
 <body>
-    <script src="js/all.js" defer></script>
+
     <div class="bgImage"></div>
     <div class="mainDiv">
         <div class="cardHolder">
-            <div class="card" onclick="controlPopup('addGroup')">
+            <div class="card" id="addGroup">
                 <div class="card-body addCard">
                     <ion-icon name="add-circle-outline" class="addIcon"></ion-icon>
                     <h5 class="card-title1">Add Group</h5>
@@ -46,8 +46,8 @@ if (isset($_REQUEST['editGroup'])) {
                         <h5 class="groupName">Group</h5>
                     </div>
                     <div class="buttonPart">
-                        <a href="" class="subject">3 Subjects</a>
-                        <a href="#" class="btn btn-primary" onclick="controlPopup('editGroup')">Edit Group</a>
+                        <a href class="subject">3 Subjects</a>
+                        <a class="btn btn-primary" id="1">Edit Group</a>
                     </div>
 
                 </div>
@@ -76,7 +76,7 @@ if (isset($_REQUEST['editGroup'])) {
                         <?php
                     }
                     ?>
-                    <form action="" method="post">
+                    <form action="group_add.php" method="post">
                         <div class="groupNameBody">
                             <div class="groupNamePopup">Enter group Name:</div>
                             <input type="text" name="" id="" class="groupNamefield" required autocomplete="off" />
@@ -97,7 +97,7 @@ if (isset($_REQUEST['editGroup'])) {
                             } else {
                                 echo "'Add Group'";
                             } ?> class="submitBtn" />
-                            <input type="button" value="Cancel" class="closeBtn" onclick="controlPopup()">
+                            <input type="button" value="Cancel" class="closeBtn">
                         </div>
                     </form>
                 </div>
@@ -113,6 +113,8 @@ if (isset($_REQUEST['editGroup'])) {
         crossorigin="anonymous"></script>
     <script defer type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script defer nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/jquery-3.6.4.js" defer></script>
+    <script src="js/all.js" defer></script>
 
 </body>
 

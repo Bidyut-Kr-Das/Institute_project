@@ -116,7 +116,6 @@ ion-icon {
 
 .subject:link,
 .subject:active,
-
 .subject:visited {
     text-decoration: none;
     color: var(--fontcolor);
@@ -127,7 +126,6 @@ ion-icon {
 
 .subject:hover {
     text-decoration: underline;
-
 }
 
 .btn {
