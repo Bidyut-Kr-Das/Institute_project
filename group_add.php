@@ -1,3 +1,15 @@
+<?php
+include("connection/connection.php");
+$addingGroup = false;
+$edittingGroup = false;
+if (isset($_REQUEST['addGroup'])) {
+    $addingGroup = true;
+}
+if (isset($_REQUEST['editGroup'])) {
+    $edittingGroup = true;
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,11 +27,11 @@
 </head>
 
 <body>
-    <script src=""></script>
+    <script src="js/all.js" defer></script>
     <div class="bgImage"></div>
     <div class="mainDiv">
         <div class="cardHolder">
-            <div class="card">
+            <div class="card" onclick="controlPopup('addGroup')">
                 <div class="card-body addCard">
                     <ion-icon name="add-circle-outline" class="addIcon"></ion-icon>
                     <h5 class="card-title1">Add Group</h5>
@@ -35,7 +47,7 @@
                     </div>
                     <div class="buttonPart">
                         <a href="" class="subject">3 Subjects</a>
-                        <a href="#" class="btn btn-primary">Edit Group</a>
+                        <a href="#" class="btn btn-primary" onclick="controlPopup('editGroup')">Edit Group</a>
                     </div>
 
                 </div>
@@ -43,6 +55,56 @@
 
         </div>
     </div>
+    <?php //------------------------------------popup-----------------------------------------//
+    if ($addingGroup || $edittingGroup) {
+        ?>
+        <div class="blackwindow">
+            <div class="popupMain">
+                <div class="popupBody">
+                    <?php
+                    if ($edittingGroup) {
+                        ?>
+                        <div class="heading1">
+                            Edit <span class="headingsub1"> Group </span>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="heading1">
+                            Add <span class="headingsub1"> New Group </span>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <form action="" method="post">
+                        <div class="groupNameBody">
+                            <div class="groupNamePopup">Enter group Name:</div>
+                            <input type="text" name="" id="" class="groupNamefield" required autocomplete="off" />
+                            <?php
+                            if ($edittingGroup) {
+                                ?>
+                                <input type="hidden" name="edit" value="true" />
+                                <?php
+                            } else {
+                                ?>
+                                <input type="hidden" name="add" value="true" />
+                                <?php
+                            }
+                            ?>
+                            <input type="submit" value=<?php
+                            if ($edittingGroup) {
+                                echo "'Update'";
+                            } else {
+                                echo "'Add Group'";
+                            } ?> class="submitBtn" />
+                            <input type="button" value="Cancel" class="closeBtn" onclick="controlPopup()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php
+    } ?>
     <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
