@@ -1,85 +1,191 @@
-
 @font-face {
     font-family: poppins;
     src: url(../fonts/Poppins-Regular.ttf);
 }
-html{
+
+html {
     font-family: poppins;
 }
 
-*
-{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
+body {
     font-size: 1.2rem;
     background: #EEEEEE;
 }
 
-.heading{
+.heading {
     background: #EEEEEE;
     width: 50rem;
     padding: 2.5rem;
     margin: 5rem auto;
     border-top: 0.5rem solid #00ADB5;
-    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5) ;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5), -0.5rem 0.5rem 0.5rem rgba(228, 218, 218, 0.5);
 }
 
-.heading h2{
+.heading h2 {
     font-size: 1.5rem;
-    line-height:1.5rem;
-    padding:2rem;
+    line-height: 1.5rem;
+    padding: 2rem;
     text-align: center;
 }
 
-.inputname{
+.inputname {
     width: 90%;
     position: relative;
     margin: 0.7rem auto;
 }
-ion-icon{
+
+ion-icon {
     padding: 0.5rem 0.7rem
 }
 
-.studname{
+.studname {
     width: 45%;
     padding: 0.5rem 0 0.5rem 2.5rem;
 }
 
-.inputname span{
+.inputname span {
     margin-left: 2.1rem;
 }
 
-.allname{
+.allname {
     width: 100%;
     padding: 0.5rem 0 0.5rem 2.5rem;
 }
 
-.inputname ion-icon{
+.inputname ion-icon {
     position: absolute;
     font-size: 1.1rem;
     color: #00ADB5;
     border-right: 0.1rem solid #cccccc;
 }
 
-.allname, .studname{
-    border:0.1rem solid #cccccc;
-    outline:none;
+.allname,
+.studname {
+    border: 0.1rem solid #cccccc;
+    outline: none;
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     transition: all 0.30s ease-in-out;
 }
 
-.allname:hover, .studname:hover{
-    background-color: antiquewhite;
+.allname:hover,
+.studname:hover {
+    background-color: rgb(221, 237, 242);
 }
 
-.allname:focus, .studname:focus{
+.allname:focus,
+.studname:focus {
     border: 0.1rem solid #00ADB5;
 
 }
 
+.radio-button {
+    margin-right: 0.4rem;
+}
+
+.check {
+    margin-right: 1rem;
+    position: relative;
+}
+
+.check::before {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    vertical-align: -0.2rem;
+    border: 0.2rem solid gray;
+    padding: 0.1rem;
+    background-color: transparent;
+    background-clip: content-box;
+    transition: all 0.2s ease;
+}
+
+.check::after {
+    border-radius: 0.2rem solid black;
+    border-top: 0.2rem solid black;
+    border-right: 0.2rem solid black;
+    content: "";
+    height: 1.4rem;
+    left: 0.2rem;
+    position: absolute;
+    top: 0.6rem;
+    transform: scaleX(-1) rotate(135deg);
+    transform-origin: left top;
+    width: 0.6rem;
+    display: none;
+}
+
+.check-button {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 0.1rem;
+    margin: -0.1rem;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 0.1rem;
+
+}
+
+.check-button:hover+.check::before {
+    border-color: #00ACC5;
+}
+
+.check-button:checked+.check::before {
+    border-color: green;
+}
+
+.check-button:checked+.check::after {
+    -moz-animation: check 0.8s ease 0s running;
+    -webkit-animation: check 0.8s ease 0s running;
+    animation: check 0.8s ease 0s running;
+    display: block;
+    width: 0.6rem;
+    height: 1.9rem;
+    border-color: green;
+}
+
+@-webkit-keyframes check {
+    0% {
+        height: 0;
+        width: 0;
+    }
+
+    25% {
+        height: 0;
+        width: 0.5rem;
+    }
+
+    50% {
+        height: 1.6rem;
+        width: 0.5rem;
+    }
+}
+
+.button {
+    background-color: #00ADB5;
+    color: white;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-bottom: 0.9rem;
+
+}
+
+
+.button:hover {
+    background: #0b5ed7;
+}
