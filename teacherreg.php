@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>student-master form</title>  
+    <title>Teacher-master form</title>  
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" type="text/css" href="css/stud_from.css">
@@ -25,7 +25,7 @@ input[type=number] {
 
 <body>
     <div class="heading">
-        <h2>Student's Registation Form</h2>
+        <h2>Teacher's Registation Form</h2>
         <div class="form">
         <form>
             <div class="inputname">
@@ -56,20 +56,21 @@ input[type=number] {
             </div>
 
             <div class="inputname">
-                <ion-icon name="book"></ion-icon>
-                <input type ="number" placeholder=" Class" class="studname">
+                <ion-icon name="book"></ion-icon> 
+                <input type ="number" placeholder=" Higher Qualification" class="studname">
            
                 <span>
+                    
                 <ion-icon name="bookmarks"></ion-icon>
                 <select class="studname">
-                    <option>Select Educatioal Board</option>
-                    <option>WBBSE</option>
-                    <option>WBCHSE</option>
-                    <option>ICSE</option>
-                    <option>ISC</option>
-                    <option>CBSE</option>
+                    <option> GROUPS</option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
                   </select>
-                </span>
+                 </span>
             </div>
             
 
@@ -79,7 +80,7 @@ input[type=number] {
                 <input type ="number" placeholder=" Enter your age" class="allname">
             </div>
 
-            <div class="inputname">
+            <!-- <div class="inputname">
                 <ion-icon name="person"></ion-icon>
                 <input type ="text" placeholder=" Guardian's Name" class="allname">
             </div>
@@ -87,7 +88,7 @@ input[type=number] {
             <div class="inputname">
                 <ion-icon name="call"></ion-icon>
                 <input type ="number" placeholder=" Guardian's Ph.No" class="allname">
-            </div>
+            </div> -->
 
             <div class="inputname">
                <input type ="checkbox" id="cb" class="check-button">
