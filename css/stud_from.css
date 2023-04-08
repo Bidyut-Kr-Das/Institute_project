@@ -34,6 +34,19 @@ body {
     text-align: center;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 .inputname {
     width: 90%;
     position: relative;
@@ -155,6 +168,23 @@ ion-icon {
 }
 
 @-webkit-keyframes check {
+    0% {
+        height: 0;
+        width: 0;
+    }
+
+    25% {
+        height: 0;
+        width: 0.5rem;
+    }
+
+    50% {
+        height: 1.6rem;
+        width: 0.5rem;
+    }
+}
+
+@keyframes check {
     0% {
         height: 0;
         width: 0;

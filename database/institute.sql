@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2023 at 01:45 PM
+-- Generation Time: Apr 02, 2023 at 11:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -24,37 +24,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `emailId` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `groupmaster`
 --
 
 CREATE TABLE `groupmaster` (
   `groupId` int(11) NOT NULL,
   `groupName` varchar(255) NOT NULL,
-  `active` char(1) NOT NULL DEFAULT 'Y'
+  `active` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `groupmaster`
---
-
-INSERT INTO `groupmaster` (`groupId`, `groupName`, `active`) VALUES
-(10, 'Science', 'Y'),
-(11, 'Arts', 'Y'),
-(12, 'Com', 'Y'),
-(15, 'php', 'Y');
 
 -- --------------------------------------------------------
 
@@ -112,12 +89,6 @@ CREATE TABLE `teachermaster` (
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `groupmaster`
 --
 ALTER TABLE `groupmaster`
@@ -146,16 +117,10 @@ ALTER TABLE `teachermaster`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `groupmaster`
 --
 ALTER TABLE `groupmaster`
-  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `studentmaster`

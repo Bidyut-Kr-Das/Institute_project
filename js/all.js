@@ -26,7 +26,5 @@ $(document).ready(function(){
         var id= $(this).attr('id');
         window.location.href="group_add.php?editGroup="+id;
     });
-
-
-
 });
+
