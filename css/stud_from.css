@@ -48,7 +48,10 @@ input[type=number] {
 }
 
 .inputname {
-    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     position: relative;
     margin: 0.7rem auto;
 }
@@ -58,12 +61,18 @@ ion-icon {
 }
 
 .studname {
-    width: 45%;
+    width: 100%;
     padding: 0.5rem 0 0.5rem 2.5rem;
 }
 
+.span1 {
+    width: 47%;
+    position: relative;
+    box-sizing: border-box;
+}
+
 .inputname span {
-    margin-left: 2.1rem;
+    /* margin-left: 2.1rem; */
 }
 
 .allname {
