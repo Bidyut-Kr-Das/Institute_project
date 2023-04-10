@@ -19,12 +19,14 @@ body {
 }
 
 .heading {
+    /* margin-top: 14rem; */
     background: #EEEEEE;
     width: 50rem;
     padding: 2.5rem;
     margin: 5rem auto;
     border-top: 0.5rem solid #00ADB5;
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5), -0.5rem 0.5rem 0.5rem rgba(228, 218, 218, 0.5);
+    transform: scale(1.2);
 }
 
 .heading h2 {
@@ -67,6 +69,12 @@ ion-icon {
 
 .span1 {
     width: 47%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.span2 {
+    width: 100%;
     position: relative;
     box-sizing: border-box;
 }
