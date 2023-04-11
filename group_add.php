@@ -3,11 +3,22 @@ include("connection/connection.php");
 include("nav.php");
 $addingGroup = false;
 $edittingGroup = false;
+$deletingGroup = false;
 $groupName = "";
+$deleteGroupName = "";
 
 if (isset($_REQUEST['addGroup'])) {
     $addingGroup = true;
 }
+//This is to bring the confirmation of delete group
+if (isset($_REQUEST['deleteGroup'])) {
+    $deletingGroup = true;
+    $groupId = $_REQUEST['deleteGroup'];
+    $query = "SELECT * FROM `groupmaster` WHERE `groupId`='$groupId' ";
+    $result = mysqli_query($connection, $query);
+    $row1 = mysqli_fetch_array($result);
+}
+//This is to bring the confirmation of editting group popup
 if (isset($_REQUEST['editGroup'])) {
     $edittingGroup = true;
     // $newgroupId = $_REQUEST['editGroup'];
@@ -17,6 +28,7 @@ if (isset($_REQUEST['editGroup'])) {
     $row = mysqli_fetch_array($result);
     $groupName = $row['groupName'];
 }
+//This adds a group 
 if (isset($_REQUEST['add'])) {
     $newgroupName = $_REQUEST['groupName'];
     $query = "INSERT INTO `groupmaster` SET `groupName`='$newgroupName'";
@@ -25,6 +37,7 @@ if (isset($_REQUEST['add'])) {
         header("location:group_add.php?msg=Successfully added group");
     }
 }
+//This edits group
 if (isset($_REQUEST['edit'])) {
     $newgroupName = $_REQUEST['groupName'];
 
@@ -35,8 +48,21 @@ if (isset($_REQUEST['edit'])) {
         header("location:group_add.php");
     }
 }
+//This deletes group along with all the subject in that group
+if (isset($_REQUEST['delete'])) {
+    $groupId = $_REQUEST['delete'];
+    $query = "DELETE FROM `groupmaster` WHERE `groupId`='$groupId' ";
+    $result = mysqli_query($connection, $query);
+    $query = "DELETE FROM `subject_master` WHERE `group_Id`='$groupId' ";
+    $result = mysqli_query($connection, $query);
+    if ($result) {
+        @header("location:group_add.php");
+    }
+}
 $query1 = "SELECT * FROM `groupmaster` ORDER BY `groupId`";
 $result1 = mysqli_query($connection, $query1);
+
+
 
 ?>
 
@@ -58,12 +84,26 @@ $result1 = mysqli_query($connection, $query1);
                 <div class="card-body">
                     <div class="card-title">
                         <h5 class="groupName">
-                            <?php echo $row['groupName']; ?>
+                            <?php echo $row['groupName'];
+                            $groupId1 = $row['groupId'];
+                            $query2 = "SELECT * FROM `subject_master` WHERE `group_Id`='$groupId1' ";
+                            $result2 = mysqli_query($connection, $query2);
+                            // $row2 = mysqli_fetch_array($result2);
+                            $rownumber = mysqli_num_rows($result2);
+
+                            ?>
                         </h5>
+                        <a href="subjectAdd.php?groupId=<?php echo $groupId1; ?>" class="subject">
+                            <?php echo $rownumber; ?> Subjects
+                        </a>
                     </div>
                     <div class="buttonPart">
-                        <a href class="subject">3 Subjects</a>
-                        <a class="btn btn-primary" id="<?php echo $row['groupId']; ?>"><i class="fa-solid fa-house"></i>Edit
+                        <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i
+                                class="fa-solid fa-trash"></i>
+                        </div>
+                        <a class="btn btn-primary editGroupBtn" id="<?php echo $groupId1; ?>"><i
+                                class="fa-solid fa-pen"></i>
+                            Edit
                             Group</a>
                     </div>
                 </div>
@@ -73,7 +113,8 @@ $result1 = mysqli_query($connection, $query1);
         ?>
     </div>
 </div>
-<?php //------------------------------------popup-----------------------------------------//
+<?php
+//------------------------------------popup-----------------------------------------//
 if ($addingGroup || $edittingGroup) {
     ?>
     <div class="blackwindow">
@@ -116,7 +157,37 @@ if ($addingGroup || $edittingGroup) {
                         } else {
                             echo "'Add Group'";
                         } ?> class="submitBtn" />
-                        <input type="button" value="Cancel" class="closeBtn">
+                        <input type="button" value="Cancel" class="closeBtn closeBtnGrp">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+if ($deletingGroup) {
+    ?>
+    <div class="blackwindow">
+        <div class="popupMain">
+            <div class="popupBody">
+                <div class="heading1">
+                    Delete <span class="headingsub1"> The Group? </span>
+                </div>
+                <form action="">
+                    <div class="groupNameBody">
+                        <div class="groupNamePopup">Are you sure you want to delete <span class="colorGrpName">
+                                <?php echo $row1['groupName']; ?>
+                            </span>
+                            group?
+                        </div>
+                        <div class="warning">
+                            <p><strong>Warning!</strong> It will delete the group permanently along with all the subjects
+                                inside
+                                this group</p>
+                        </div>
+                        <input type="hidden" name="delete" value="<?php echo $row1['groupId']; ?>" />
+                        <input type="submit" value="Yes" class="submitBtn" />
+                        <input type="button" class="closeBtn" value="No">
                     </div>
                 </form>
             </div>

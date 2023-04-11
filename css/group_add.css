@@ -58,7 +58,7 @@ body {
     /* flex-direction: row; */
     justify-content: center;
 
-    grid-gap: 4rem 4rem;
+    gap: 0 4rem;
     grid-template-columns: repeat(auto-fill, 25rem);
 }
 
@@ -98,13 +98,35 @@ ion-icon {
     flex-direction: column;
 }
 
+.deleteBtn {
+    font-size: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #ff5252;
+    transition: .4s;
+}
+
+.deleteBtnSubj {
+    font-size: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #ff5252;
+    transition: .4s;
+}
+
+.deleteBtn:hover,
+.deleteBtnSubj:hover {
+    transform: scale(1.5);
+}
+
 .card-title {
     height: 78%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: left;
+    flex-direction: column;
+    text-align: center;
     box-sizing: border-box;
     font-size: 8rem;
     /* padding-left: 2rem; */
@@ -223,7 +245,7 @@ ion-icon {
     border-radius: .5rem;
     margin-top: 2rem;
     outline: none;
-    padding-left: 2rem;
+    padding-left: 1rem;
     font-size: 2rem;
 }
 
@@ -243,7 +265,8 @@ ion-icon {
     transition: .5s;
 }
 
-.closeBtn {
+.closeBtn,
+.closeSubjBtn {
     float: right;
     margin-top: 3rem;
     /* margin-left: 2rem; */
@@ -263,9 +286,30 @@ ion-icon {
 .submitBtn:hover,
 .submitBtn:active,
 .closeBtn:hover,
-.closeBtn:active {
+.closeBtn:active,
+.closeSubjBtn:hover,
+.closeSubjBtn:active {
     background-color: #0b5ed7;
     border: .1rem solid #0b5ed7;
+}
+
+/* .warning {
+    background-color: #ffffcc;
+    border-left: 6px solid #ffeb3b;
+} */
+.warning {
+    padding-left: .5rem;
+    margin-top: 2.5rem;
+    padding-block: auto;
+    height: 6.3rem;
+    font-size: 1.8rem;
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+}
+
+.colorGrpName {
+    color: #0b5ed7;
+    font-weight: bold;
 }
 
 
@@ -345,7 +389,7 @@ ion-icon {
     }
 }
 
-@media only screen and (max-width:300px) {
+@media only screen and (max-width:323px) and (min-width) {
     html {
         font-size: 50%;
     }
