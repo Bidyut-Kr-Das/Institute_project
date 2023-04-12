@@ -7,12 +7,22 @@ $groupId = $_REQUEST['groupId'];
 include("connection/connection.php");
 $addingSubject = false;
 $edittingSubject = false;
+$subjectNameEdit = "";
+//to bring the modal of adding subject.
 if (isset($_REQUEST['addSubject'])) {
     $addingSubject = true;
 }
+//to bring the modal of editting subject 
 if (isset($_REQUEST['editSubject'])) {
     $edittingSubject = true;
+    $subjectId = $_REQUEST['subjectId'];
+    $query = "SELECT * FROM `subject_master`WHERE `group_Id`='$groupId' AND `sub_Id`='$subjectId'";
+    $result = mysqli_query($connection, $query);
+    $rowarr1 = mysqli_fetch_array($result);
+    $subjectNameEdit = $rowarr1['sub_Name'];
+    $subjectId = $rowarr1['sub_Id'];
 }
+//queries to add the subject in database
 if (isset($_REQUEST['add'])) {
     $groupId1 = $_REQUEST['add'];
     $subjectName = $_REQUEST['subjectNamefield'];
@@ -23,6 +33,17 @@ if (isset($_REQUEST['add'])) {
         @header("location:subjectAdd.php?groupId=" . $groupId);
     }
 }
+if (isset($_REQUEST['edit'])) {
+    $groupId1 = $_REQUEST['groupId'];
+    $subjectId1 = $_REQUEST['edit'];
+    $subjectName = $_REQUEST['subjectNamefield'];
+    $query = "UPDATE `subject_master` SET `sub_Name`='$subjectName' WHERE `group_Id`='$groupId1' AND `sub_Id`='$subjectId1' ";
+    $result = mysqli_query($connection, $query);
+    if ($result) {
+        @header("location:subjectAdd.php?groupId=" . $groupId1);
+    }
+}
+//query to bring the right subjects from database
 $query = "SELECT * FROM `subject_master` WHERE `group_Id`='$groupId' ORDER BY 'sub_Id' ";
 $result = mysqli_query($connection, $query);
 
@@ -87,12 +108,12 @@ if ($addingSubject || $edittingSubject) {
                 <form action="" method="post">
                     <div class="subjectNameBody">
                         <div class="subjectNamePopup">Enter Subject Name:</div>
-                        <input type="text" name="subjectNamefield" id="" class="subjectNamefield" required
-                            autocomplete="off" />
+                        <input type="text" value="<?php echo $subjectNameEdit; ?>" name="subjectNamefield" id=""
+                            class="subjectNamefield" required autocomplete="off" />
                         <?php
                         if ($edittingSubject) {
                             ?>
-                            <input type="hidden" name="edit" value="true" />
+                            <input type="hidden" name="edit" value="<?php echo $subjectId; ?>" />
                             <?php
                         } else {
                             ?>
