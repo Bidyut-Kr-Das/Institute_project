@@ -16,12 +16,14 @@ html {
     --fontcolor: #393E46;
     --accentColor: #00ADB5;
     --font-size: 62.5%;
+    /* font-size: 100%; */
 
 }
 
 body {
     /* overflow: hidden; */
-    font-size: var(--font-size);
+    /* font-size: var(--font-size); */
+    /* font-size: 100%; */
     background-color: #EEEEEE;
 }
 
@@ -41,6 +43,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 0;
+    font-size: 100%;
+
 }
 
 .cardHolder {
@@ -53,31 +58,33 @@ body {
     /* flex-direction: row; */
     justify-content: center;
 
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fill, 15rem);
+    gap: 0 4rem;
+    grid-template-columns: repeat(auto-fill, 25rem);
 }
 
 ion-icon {
-    font-size: 6rem;
+    font-size: 8rem;
     color: var(--accentColor);
 }
 
 .card-title1 {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
 }
 
 .card {
-    height: 18rem;
-    width: 15rem;
+    height: 28rem;
+    width: 25rem;
     transition: 0.5s;
+    border-radius: 1rem;
     /* border: .1rem solid var(--accentColor); */
     /* box-shadow: 1rem 1rem 1rem rgba(0, 173, 181, 0.5); */
-    box-shadow: .2rem .2rem .2rem rgba(0, 173, 181, 0.5);
+    box-shadow: 1rem 1rem 1rem rgba(0, 173, 181, 0.5);
+    /* transform: scale(1.5); */
 }
 
 .card:hover {
-    box-shadow: 1rem 1rem 1rem rgba(0, 173, 181, 0.5);
-    border: default;
+    box-shadow: 2rem 2rem 2rem rgba(0, 173, 181, 0.5);
+    /* border: default; */
 }
 
 
@@ -87,8 +94,29 @@ ion-icon {
     align-items: center;
     text-align: center;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 5rem;
     flex-direction: column;
+}
+
+.deleteBtn {
+    font-size: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #ff5252;
+    transition: .4s;
+}
+
+.deleteBtnSubj {
+    font-size: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #ff5252;
+    transition: .4s;
+}
+
+.deleteBtn:hover,
+.deleteBtnSubj:hover {
+    transform: scale(1.5);
 }
 
 .card-title {
@@ -97,7 +125,10 @@ ion-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: left;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 8rem;
     /* padding-left: 2rem; */
 }
 
@@ -110,7 +141,7 @@ ion-icon {
     align-items: center;
     flex-direction: row;
     box-sizing: border-box;
-    padding-inline: .5rem;
+    padding-inline: 1.5rem;
     /* padding-left: 2rem; */
 }
 
@@ -119,7 +150,7 @@ ion-icon {
 .subject:visited {
     text-decoration: none;
     color: var(--fontcolor);
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     font-weight: bold;
 
 }
@@ -129,9 +160,10 @@ ion-icon {
 }
 
 .btn {
-    height: 2.5rem;
-    width: 7rem;
-    font-size: 1rem;
+    height: 3.5rem;
+    width: 12rem;
+    font-size: 1.6rem;
+    font-weight: bold;
     background-color: var(--accentColor);
     border: .1rem solid var(--accentColor);
 }
@@ -140,8 +172,9 @@ ion-icon {
     padding: 0;
 }
 
-.groupName {
-    font-size: 2.7rem;
+.groupName,
+.subjectName {
+    font-size: 3.7rem;
     pointer-events: none;
 }
 
@@ -163,8 +196,8 @@ ion-icon {
 }
 
 .popupMain {
-    height: 20rem;
-    width: 45rem;
+    height: 30rem;
+    width: 65rem;
     /* border: .1rem solid white; */
     background-color: var(--bgcolor);
     border-radius: .7rem;
@@ -173,16 +206,16 @@ ion-icon {
 }
 
 .popupBody {
-    margin-top: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
     box-sizing: border-box;
 
 }
 
 .heading1 {
     color: var(--fontcolor);
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     /* padding-left: 2rem;
     padding-top: 1rem; */
     font-weight: bold;
@@ -196,51 +229,54 @@ ion-icon {
 
 }
 
-.groupNamePopup {
-    font-size: 1.2rem;
-    padding-top: 2.8rem;
+.groupNamePopup,
+.subjectNamePopup {
+    font-size: 2.2rem;
+    padding-top: 3.8rem;
     color: #696969;
 }
 
-.groupNamefield {
+.groupNamefield,
+.subjectNamefield {
     width: 100%;
-    height: 3rem;
-    border: .1rem solid var(--accentColor);
+    height: 4rem;
+    border: .3rem solid var(--accentColor);
     background-color: var(--bgcolor);
-    border-radius: .4rem;
-    margin-top: 1rem;
+    border-radius: .5rem;
+    margin-top: 2rem;
     outline: none;
     padding-left: 1rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
 }
 
 .submitBtn {
     float: right;
-    margin-top: 2rem;
-    margin-left: 2rem;
-    height: 2.5rem;
-    width: 7rem;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    height: 3.5rem;
+    width: 10rem;
     background-color: var(--accentColor);
     border: .1rem solid var(--accentColor);
     border-radius: .3rem;
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
     transition: .5s;
 }
 
-.closeBtn {
+.closeBtn,
+.closeSubjBtn {
     float: right;
-    margin-top: 2rem;
+    margin-top: 3rem;
     /* margin-left: 2rem; */
-    height: 2.5rem;
-    width: 7rem;
+    height: 3.5rem;
+    width: 10rem;
     background-color: grey;
     border: .1rem solid grey;
     border-radius: .3rem;
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
     transition: .5s;
@@ -250,14 +286,38 @@ ion-icon {
 .submitBtn:hover,
 .submitBtn:active,
 .closeBtn:hover,
-.closeBtn:active {
+.closeBtn:active,
+.closeSubjBtn:hover,
+.closeSubjBtn:active {
     background-color: #0b5ed7;
     border: .1rem solid #0b5ed7;
+}
+
+/* .warning {
+    background-color: #ffffcc;
+    border-left: 6px solid #ffeb3b;
+} */
+.warning {
+    padding-left: .5rem;
+    margin-top: 2.5rem;
+    padding-block: auto;
+    height: 6.3rem;
+    font-size: 1.8rem;
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+}
+
+.colorGrpName {
+    color: #0b5ed7;
+    font-weight: bold;
 }
 
 
 
 @media only screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
 
     .card {
         height: 40vh;
@@ -270,13 +330,14 @@ ion-icon {
     .cardHolder {
         display: grid;
         grid-template-columns: repeat(auto-fit, 90%);
-        grid-gap: 1rem 0;
+        grid-gap: 2rem 0;
 
     }
 
     .buttonPart {
         padding-left: 2rem;
         font-size: 3rem;
+        /* transform: scale(1.5); */
     }
 
     .subject:link,
@@ -289,16 +350,18 @@ ion-icon {
     }
 
     .btn {
-        height: 3.5rem;
-        width: 12rem;
-        font-size: 1.5rem;
+        height: 5.2rem;
+        width: 18rem;
+        font-size: 2.2rem;
         /* padding: 0; */
         background-color: var(--accentColor);
         border: .1rem solid var(--accentColor);
         padding-block: auto;
+        /* transform: scale(1.5); */
     }
 
-    .groupName {
+    .groupName,
+    .subjectName {
         font-size: 6rem;
     }
 
@@ -320,13 +383,13 @@ ion-icon {
 
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 568px) {
     html {
-        font-size: 62.5%;
+        font-size: 80%
     }
 }
 
-@media only screen and (max-width:300px) {
+@media only screen and (max-width:323px) and (min-width) {
     html {
         font-size: 50%;
     }
