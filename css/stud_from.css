@@ -241,3 +241,16 @@ ion-icon,
 .button:hover {
     background: #0b5ed7;
 }
+
+@media (min-width: 323px) {
+    .heading {
+        max-height: 500rem;
+        max-width: 100%;
+    }
+
+    .button:hover {
+        background: green;
+    }
+
+
+}

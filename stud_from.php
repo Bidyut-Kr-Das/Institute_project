@@ -38,7 +38,7 @@ include("header.php");
                         <option>Female</option>
                         
                     </select>
-                    <i class="fa-solid fa-person"  ></i>
+                    <i class="fa-solid fa-person"></i>
                
             </div>
 
