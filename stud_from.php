@@ -31,12 +31,15 @@ include("header.php");
             </div>
 
             <div class="inputname">
-
-                <input type="radio" class="gender-redio" name="gender">
-                <label style="margin-right: 2rem;">Male</label>
-
-                <input type="radio" class="gender-redio" name="gender">
-                <label>Female</label>
+            
+            <select class="studname">
+                        <option>Select your gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        
+                    </select>
+                    <i class="fa-solid fa-person"  ></i>
+               
             </div>
 
             <div class="inputname">
