@@ -58,8 +58,8 @@ input[type=number] {
     margin: 0.7rem auto;
 }
 
-ion-icon,
-.fa-solid {
+.inputname ion-icon,
+.fa-person {
     padding: 0.5rem 0.7rem;
     position: absolute;
     top: 0.4rem;
@@ -93,7 +93,7 @@ ion-icon,
 }
 
 .inputname ion-icon,
-.fa-solid {
+.fa-person {
     position: absolute;
     font-size: 1.1rem;
     color: #00ADB5;
@@ -242,15 +242,78 @@ ion-icon,
     background: #0b5ed7;
 }
 
-@media (min-width: 323px) {
+@media only screen and (min-width: 323px) and (max-width: 500px) {
     .heading {
-        max-height: 500rem;
-        max-width: 100%;
+        height: 80rem;
+        width: 300px;
+        position: relative;
     }
 
-    .button:hover {
-        background: green;
+    .inputname {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 90%;
+        margin-top: 1rem;
+
     }
 
+    .lname,
+    .board {
+        margin-top: 0.7rem;
+    }
+
+    .fname,
+    .lname,
+    .book1,
+    .board {
+        width: 100%;
+    }
+
+    .studname,
+    .allname {
+        height: 4rem;
+        padding-left: 4rem;
+        font-size: 1.5rem;
+    }
+
+    .inputname ion-icon,
+    .fa-person {
+        position: absolute;
+        font-size: 1.8rem;
+        color: #00ADB5;
+        border-right: 0.1rem solid #cccccc;
+
+
+    }
 
 }
+
+/* @media only screen and (min-width: 500px) and (max-width:){
+        .heading {
+            height: 80rem;
+            width: 400px;
+            position: relative;
+            margin: 5rem, 0;
+        }
+
+        .inputname {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+        }
+
+        .lname,
+        .board {
+            margin-top: 0.7rem;
+        }
+
+        .fname,
+        .lname,
+        .book1,
+        .board {
+            width: 100%;
+        }
+
+    }*/

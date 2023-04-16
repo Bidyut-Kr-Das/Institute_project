@@ -6,13 +6,13 @@ include("header.php");
     <div class="form">
         <form>
             <div class="inputname">
-                <span class="span1">
+                <span class="span1 fname">
                     <ion-icon name="person"></ion-icon>
                     <input type="text" placeholder=" First name" class="studname">
                 </span>
-                <span class="span1">
+                <span class="span1 lname">
                     <ion-icon name="person"></ion-icon>
-                    <input type="text" placeholder=" Last name" class="studname">
+                    <input type="text" placeholder=" Last name" class="studname" >
                 </span>
             </div>
             <div class="inputname">
@@ -43,13 +43,13 @@ include("header.php");
             </div>
 
             <div class="inputname">
-                <span class="span1">
+                <span class="span1 book1">
                     <ion-icon name="book"></ion-icon>
                     <input type="number" placeholder=" Class" class="studname">
                 </span>
-                <span class="span1">
+                <span class="span1 board" >
                     <ion-icon name="bookmarks"></ion-icon>
-                    <select class="studname">
+                    <select class="studname" >
                         <option>Select Educatioal Board</option>
                         <option>WBBSE</option>
                         <option>WBCHSE</option>
