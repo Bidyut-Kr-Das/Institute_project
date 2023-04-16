@@ -58,8 +58,12 @@ input[type=number] {
     margin: 0.7rem auto;
 }
 
-ion-icon {
-    padding: 0.5rem 0.7rem
+ion-icon,
+.fa-solid {
+    padding: 0.5rem 0.7rem;
+    position: absolute;
+    top: 0.4rem;
+    left: 0.2rem;
 }
 
 .studname {
@@ -88,7 +92,8 @@ ion-icon {
     padding: 0.5rem 0 0.5rem 2.5rem;
 }
 
-.inputname ion-icon {
+.inputname ion-icon,
+.fa-solid {
     position: absolute;
     font-size: 1.1rem;
     color: #00ADB5;
@@ -144,10 +149,10 @@ ion-icon {
     border-top: 0.2rem solid black;
     border-right: 0.2rem solid black;
     content: "";
-    height: 1.4rem;
-    left: 0.2rem;
+    height: 0.4rem;
+    left: 0.1rem;
     position: absolute;
-    top: 0.6rem;
+    top: 1rem;
     transform: scaleX(-1) rotate(135deg);
     transform-origin: left top;
     width: 0.6rem;
