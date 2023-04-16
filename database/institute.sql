@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 11:11 AM
+-- Generation Time: Apr 16, 2023 at 08:07 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -24,14 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `emailId` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groupmaster`
 --
 
 CREATE TABLE `groupmaster` (
   `groupId` int(11) NOT NULL,
   `groupName` varchar(255) NOT NULL,
-  `active` char(1) NOT NULL
+  `active` char(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `groupmaster`
+--
+
+INSERT INTO `groupmaster` (`groupId`, `groupName`, `active`) VALUES
+(11, 'Arts', 'Y'),
+(12, 'Commerce', 'Y'),
+(18, 'testing long group name', 'Y'),
+(20, 'Science', 'Y');
 
 -- --------------------------------------------------------
 
@@ -62,9 +85,26 @@ CREATE TABLE `studentmaster` (
 CREATE TABLE `subject_master` (
   `sub_Id` int(11) NOT NULL,
   `sub_Name` varchar(255) NOT NULL,
-  `active` char(1) NOT NULL,
+  `active` char(1) NOT NULL DEFAULT 'Y',
   `group_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `subject_master`
+--
+
+INSERT INTO `subject_master` (`sub_Id`, `sub_Name`, `active`, `group_Id`) VALUES
+(1, 'Bengali', 'Y', 11),
+(6, 'English', 'Y', 11),
+(7, 'History', 'Y', 11),
+(8, 'Geography', 'Y', 11),
+(9, 'Political Science', 'Y', 11),
+(10, 'I am out of Subjects', 'Y', 11),
+(15, 'Kingshuk subject', 'Y', 11),
+(16, 'Physics', 'Y', 20),
+(17, 'Chemistry', 'Y', 20),
+(18, 'Mathematics', 'Y', 20),
+(19, 'Computer Application', 'Y', 20);
 
 -- --------------------------------------------------------
 
@@ -87,6 +127,12 @@ CREATE TABLE `teachermaster` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `groupmaster`
@@ -117,10 +163,16 @@ ALTER TABLE `teachermaster`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `groupmaster`
 --
 ALTER TABLE `groupmaster`
-  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `studentmaster`
@@ -132,7 +184,7 @@ ALTER TABLE `studentmaster`
 -- AUTO_INCREMENT for table `subject_master`
 --
 ALTER TABLE `subject_master`
-  MODIFY `sub_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sub_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `teachermaster`
