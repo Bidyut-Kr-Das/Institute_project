@@ -16,8 +16,8 @@ if (isset($_REQUEST['mode'])) {
     $studClass = $_REQUEST['studClass']; //done
     $studBoard = $_REQUEST['studBoard']; //board
     $studAge = $_REQUEST['studAge']; //done
-    $guardName = $_REQUEST['guardName'];
-    $guardMobile = $_REQUEST['guardMobile'];
+    $guardName = $_REQUEST['guardName']; //done
+    $guardMobile = $_REQUEST['guardMobile']; //done
     $query = "INSERT INTO `studentmaster` SET `studentName`='$studfullName',
                                                                                             `studPhNo`='$studMobile',
                                                                                             `email`='$studEmail',
@@ -83,7 +83,7 @@ if (isset($_REQUEST['mode'])) {
                     <ion-icon name="book"></ion-icon>
                     <input type="number" placeholder=" Class" name="studClass" class="studname">
                 </span>
-                <span class="span1 board" >
+                <span class="span1 board">
                     <ion-icon name="bookmarks"></ion-icon>
 
                     <select class="studname" name="studBoard">

@@ -242,7 +242,7 @@ input[type=number] {
     background: #0b5ed7;
 }
 
-@media only screen and (min-width: 323px) and (max-width: 500px) {
+@media only screen and (min-width: 300px) and (max-width: 500px) {
     .heading {
         height: 80rem;
         width: 300px;
