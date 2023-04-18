@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
 @font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins-Regular.ttf);
+	font-family: poppins;
+	src: url(../fonts/Poppins-Regular.ttf);
 }
 
 * {
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;	
-	font-family:poppins;
+	padding: 0;
+	font-family: poppins;
 }
 
 body {
-	background: linear-gradient(90deg, #00ADB5,#02f4ff,#00dee8,#00c5cf,#00ADB5);		
+	background: linear-gradient(90deg, #00ADB5, #02f4ff, #00dee8, #00c5cf, #00ADB5);
 }
 
 .container {
@@ -22,21 +23,21 @@ body {
 	min-height: 100vh;
 }
 
-.screen {		
-	background: linear-gradient(90deg,#02f4ff,#00dee8);		
-	position: relative;	
+.screen {
+	background: linear-gradient(90deg, #02f4ff, #00dee8);
+	position: relative;
 	height: 600px;
-	width: 360px;	
+	width: 360px;
 	box-shadow: 0px 0px 24px #007c82;
 }
 
 .screen__content {
 	z-index: 1;
-	position: relative;	
+	position: relative;
 	height: 100%;
 }
 
-.screen__background {		
+.screen__background {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -44,7 +45,7 @@ body {
 	bottom: 0;
 	z-index: 0;
 	-webkit-clip-path: inset(0 0 0 0);
-	clip-path: inset(0 0 0 0);	
+	clip-path: inset(0 0 0 0);
 }
 
 .screen__background__shape {
@@ -55,36 +56,36 @@ body {
 .screen__background__shape1 {
 	height: 520px;
 	width: 520px;
-	background: #FFF;	
+	background: #FFF;
 	top: -50px;
-	right: 120px;	
+	right: 120px;
 	border-radius: 0 72px 0 0;
 }
 
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background:#00c5cf ;	
+	background: #00c5cf;
 	top: -172px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #007c82,#006469);
+	background: linear-gradient(270deg, #007c82, #006469);
 	top: -24px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #00c5cf;	
+	background: #00c5cf;
 	top: 420px;
-	right: 50px;	
+	right: 50px;
 	border-radius: 60px;
 }
 
@@ -95,8 +96,8 @@ body {
 }
 
 .login__field {
-	padding: 20px 0px;	
-	position: relative;	
+	padding: 20px 0px;
+	position: relative;
 }
 
 .login__icon {
@@ -144,7 +145,7 @@ body {
 .login__submit:active,
 .login__submit:focus,
 .login__submit:hover {
-	border-color:#007c82;
+	border-color: #007c82;
 	outline: none;
 }
 
@@ -153,4 +154,3 @@ body {
 	margin-left: auto;
 	color: #007c82;
 }
-
