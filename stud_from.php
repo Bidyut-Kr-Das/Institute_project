@@ -16,8 +16,8 @@ if (isset($_REQUEST['mode'])) {
     $studClass = $_REQUEST['studClass']; //done
     $studBoard = $_REQUEST['studBoard']; //board
     $studAge = $_REQUEST['studAge']; //done
-    $guardName = $_REQUEST['guardName'];
-    $guardMobile = $_REQUEST['guardMobile'];
+    $guardName = $_REQUEST['guardName']; //done
+    $guardMobile = $_REQUEST['guardMobile']; //done
     $query = "INSERT INTO `studentmaster` SET `studentName`='$studfullName',
                                                                                             `studPhNo`='$studMobile',
                                                                                             `email`='$studEmail',
@@ -41,13 +41,15 @@ if (isset($_REQUEST['mode'])) {
         <form>
             <input type="hidden" name="mode" value="1">
             <div class="inputname">
-                <span class="span1">
+                <span class="span1 fname">
                     <ion-icon name="person"></ion-icon>
                     <input type="text" placeholder=" First name" name="studFName" class="studname">
                 </span>
-                <span class="span1">
+                <span class="span1 lname">
                     <ion-icon name="person"></ion-icon>
+
                     <input type="text" placeholder=" Last name" name="studLName" class="studname">
+
                 </span>
             </div>
             <div class="inputname">
@@ -74,16 +76,16 @@ if (isset($_REQUEST['mode'])) {
 
                 </select>
                 <i class="fa-solid fa-person"></i>
-
             </div>
 
             <div class="inputname">
-                <span class="span1">
+                <span class="span1 book1">
                     <ion-icon name="book"></ion-icon>
                     <input type="number" placeholder=" Class" name="studClass" class="studname">
                 </span>
-                <span class="span1">
+                <span class="span1 board">
                     <ion-icon name="bookmarks"></ion-icon>
+
                     <select class="studname" name="studBoard">
                         <option>Select Educatioal Board</option>
                         <option value="WBBSE">WBBSE</option>
