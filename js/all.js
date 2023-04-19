@@ -45,6 +45,32 @@ $(document).ready(function(){
         var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
         window.location.href="subjectAdd.php?groupId="+groupId;
     });
+    $('div.selectBox').click(function(){
+        $('.fa-chevron-down').css("transform","rotate(180deg)");
+        $('div.dropDown').show();
+    });
+    //! This part is for checkbox drop down menu to show checked items in select box
+    var subjects= [];
+    $('input[name=subjectcheck]').change(function(){
+        var result="";
+        var subjectValue=$(this).val();
+        if($(this).is(':checked')){
+            subjects.push(subjectValue);
+        }
+        else{
+            var indexOfUncheck=subjects.indexOf(subjectValue);
+            subjects.splice(indexOfUncheck,1);
+        }
+        $.each(subjects, function(i,val){
+            result += val +", ";
+        });
+        if(subjects.length==0){
+            result="Select Subjects"
+        }
+        $('div.selectBox').html(result);
+    });
+
+
     
 });
 

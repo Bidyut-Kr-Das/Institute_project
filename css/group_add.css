@@ -196,7 +196,7 @@ ion-icon {
 }
 
 .popupMain {
-    height: 30rem;
+    height: 35rem;
     width: 65rem;
     /* border: .1rem solid white; */
     background-color: var(--bgcolor);
@@ -206,10 +206,19 @@ ion-icon {
 }
 
 .popupBody {
-    margin-top: 2rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    position: relative;
+    --marginTopBottom: 1rem;
+    --marginLeftRight: 3rem;
+    height: calc(100% - (2 * var(--marginTopBottom)));
+    width: calc(100% - (2 * var(--marginLeftRight)));
+    margin-top: var(--marginTopBottom);
+    margin-left: var(--marginLeftRight);
+    margin-right: var(--marginLeftRight);
+    margin-bottom: var(--marginTopBottom);
     box-sizing: border-box;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; */
 
 }
 
@@ -232,7 +241,7 @@ ion-icon {
 .groupNamePopup,
 .subjectNamePopup {
     font-size: 2.2rem;
-    padding-top: 3.8rem;
+    /* padding-top: 3.8rem; */
     color: #696969;
 }
 
@@ -251,8 +260,8 @@ ion-icon {
 
 .submitBtn {
     float: right;
-    margin-top: 3rem;
-    margin-left: 3rem;
+    /* margin-top: 3rem;
+    margin-left: 3rem; */
     height: 3.5rem;
     width: 10rem;
     background-color: var(--accentColor);
@@ -268,7 +277,7 @@ ion-icon {
 .closeBtn,
 .closeSubjBtn {
     float: right;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
     /* margin-left: 2rem; */
     height: 3.5rem;
     width: 10rem;
@@ -312,6 +321,90 @@ ion-icon {
     font-weight: bold;
 }
 
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10rem;
+}
+
+.selectBoxDropdown {
+    height: 5rem;
+    width: 60%;
+    position: relative;
+    /* border: .2rem solid var(--accentColor); */
+}
+
+.selectBoxDropdown .fa-chevron-down {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    font-size: 1.7rem;
+    background-color: transparent;
+    /* transform: rotate(180deg); */
+}
+
+.selectBox {
+    height: 100%;
+    width: 100%;
+    border: .3rem solid var(--accentColor);
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-left: 2rem;
+    padding-block: .8rem;
+}
+
+.dropDown {
+    /* display: none; */
+    visibility: hidden;
+    padding: 1rem;
+    height: 20rem;
+    width: 170%;
+    border: .2rem solid #696969;
+    border-radius: .8rem;
+    margin-top: 1rem;
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+
+}
+
+#SubjCheckBoxName {
+    font-size: 1.8rem;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--accentColor);
+    color: white;
+}
+
+.checkBoxDiv {
+    border: 1px solid white;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    height: 4rem;
+    width: 16rem;
+}
+
+.groupNameBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+form {
+    height: 100%;
+}
+
+.inputField {
+    height: 8rem;
+}
 
 
 @media only screen and (max-width: 768px) {

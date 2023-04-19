@@ -93,18 +93,18 @@ $result1 = mysqli_query($connection, $query1);
 
                             ?>
                         </h5>
-                        <a href="subjectAdd.php?groupId=<?php echo $groupId1; ?>" class="subject">
+                        <a href="#" class="subject">
                             <?php echo $rownumber; ?> Subjects
                         </a>
                     </div>
                     <div class="buttonPart">
-                        <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i
-                                class="fa-solid fa-trash"></i>
-                        </div>
                         <a class="btn btn-primary editGroupBtn" id="<?php echo $groupId1; ?>"><i
                                 class="fa-solid fa-pen"></i>
                             Edit
                             Group</a>
+                        <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i
+                                class="fa-solid fa-trash"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,44 +120,67 @@ if ($addingGroup || $edittingGroup) {
     <div class="blackwindow">
         <div class="popupMain">
             <div class="popupBody">
-                <?php
-                if ($edittingGroup) {
-                    ?>
-                    <div class="heading1">
-                        Edit <span class="headingsub1"> Group </span>
-                    </div>
-                    <?php
-                } else {
-                    ?>
-                    <div class="heading1">
-                        Add <span class="headingsub1"> New Group </span>
-                    </div>
-                    <?php
-                }
-                ?>
                 <form method="post">
                     <div class="groupNameBody">
-                        <div class="groupNamePopup">Enter group Name:</div>
-                        <input type="text" name="groupName" id="" value="<?php echo $groupName; ?>" class="groupNamefield"
-                            required autocomplete="off" />
                         <?php
                         if ($edittingGroup) {
                             ?>
-                            <input type="hidden" name="edit" value="<?php echo $groupId; ?>" />
+                            <div class="heading1">
+                                Edit <span class="headingsub1"> Group </span>
+                            </div>
                             <?php
                         } else {
                             ?>
-                            <input type="hidden" name="add" value="true" />
+                            <div class="heading1">
+                                Add <span class="headingsub1"> New Group </span>
+                            </div>
                             <?php
                         }
                         ?>
-                        <input type="submit" value=<?php
-                        if ($edittingGroup) {
-                            echo "'Update'";
-                        } else {
-                            echo "'Add Group'";
-                        } ?> class="submitBtn" />
-                        <input type="button" value="Cancel" class="closeBtn closeBtnGrp">
+                        <div class="inputField">
+                            <div class="groupNamePopup">Enter group Name:</div>
+                            <input type="text" name="groupName" id="" value="<?php echo $groupName; ?>"
+                                class="groupNamefield" required autocomplete="off" />
+
+                            <?php
+                            if ($edittingGroup) {
+                                ?>
+                                <input type="hidden" name="edit" value="<?php echo $groupId; ?>" />
+                                <?php
+                            } else {
+                                ?>
+                                <input type="hidden" name="add" value="true" />
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="buttonDiv">
+                            <div class="selectBoxDropdown">
+                                <div class="selectBox">Select Subjects</div>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                <div class="dropDown">
+                                    <div class="checkBoxDiv">
+                                        <input type="checkbox" name="subjectcheck" id="checkBox1" value="TBD">
+                                        <label for="checkBox1" id="SubjCheckBoxName">Test Checkbox</label>
+                                    </div>
+                                    <!-- <div class="checkBoxDiv">
+                                        <input type="checkbox" name="subjectcheck" id="checkBox2" value="TBD">
+                                        <label for="checkBox2" id="SubjCheckBoxName">Test Checkbox</label>
+                                    </div>
+                                    <div class="checkBoxDiv">
+                                        <input type="checkbox" name="subjectcheck" id="checkBox3" value="TBD">
+                                        <label for="checkBox3" id="SubjCheckBoxName">Test Checkbox</label>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <input type="submit" value=<?php
+                            if ($edittingGroup) {
+                                echo "'Update'";
+                            } else {
+                                echo "'Add Group'";
+                            } ?> class="submitBtn" />
+                            <input type="button" value="Cancel" class="closeBtn closeBtnGrp">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -175,15 +198,19 @@ if ($deletingGroup) {
                 </div>
                 <form action="">
                     <div class="groupNameBody">
-                        <div class="groupNamePopup">Are you sure you want to delete <span class="colorGrpName">
-                                <?php echo $row1['groupName']; ?>
-                            </span>
-                            group?
-                        </div>
-                        <div class="warning">
-                            <p><strong>Warning!</strong> It will delete the group permanently along with all the subjects
-                                inside
-                                this group</p>
+                        <div class="inputField">
+
+                            <div class="groupNamePopup">Are you sure you want to delete <span class="colorGrpName">
+                                    <?php echo $row1['groupName']; ?>
+                                </span>
+                                group?
+                            </div>
+                            <div class="warning">
+                                <p><strong>Warning!</strong> It will delete the group permanently along with all the
+                                    subjects
+                                    inside
+                                    this group</p>
+                            </div>
                         </div>
                         <input type="hidden" name="delete" value="<?php echo $row1['groupId']; ?>" />
                         <input type="submit" value="Yes" class="submitBtn" />
