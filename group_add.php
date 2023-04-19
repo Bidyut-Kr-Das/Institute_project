@@ -1,6 +1,11 @@
 <?php
 include("connection/connection.php");
 include("nav.php");
+session_start();
+if(empty($_SESSION['id'])){
+    @header("location:index.php?msg=unknown Admin");
+    exit();
+}
 $addingGroup = false;
 $edittingGroup = false;
 $deletingGroup = false;

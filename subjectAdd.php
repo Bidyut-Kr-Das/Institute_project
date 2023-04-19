@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (empty($_SESSION['id'])) {
+    @header("location:index.php?msg=unknown Admin");
+    exit();
+}
 if (empty($_REQUEST['groupId'])) {
     @header("location:group_add.php?msg=No Group Found");
     exit();

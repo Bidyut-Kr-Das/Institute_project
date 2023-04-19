@@ -656,7 +656,15 @@ form {
     outline: none;
 }
 
-.button__iconn {
+.login .buttonDivLogin {
+    position: relative;
+}
+
+.login .buttonDivLogin .button__iconn {
+    position: absolute;
+    top: 1.5rem;
+    /* left: 0; */
+    right: 3rem;
     font-size: 24px;
     margin-left: auto;
     color: #007c82;
