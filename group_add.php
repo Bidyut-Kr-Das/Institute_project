@@ -105,8 +105,7 @@ $result1 = mysqli_query($connection, $query1);
                     <div class="buttonPart">
                         <a class="btn btn-primary editGroupBtn" id="<?php echo $groupId1; ?>"><i
                                 class="fa-solid fa-pen"></i>
-                            Edit
-                            Group</a>
+                            Edit</a>
                         <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i
                                 class="fa-solid fa-trash"></i>
                         </div>
@@ -174,7 +173,7 @@ if ($addingGroup || $edittingGroup) {
                                         <div class="checkBoxDiv">
                                             <input type="checkbox" class="subjectCheckbox" name="subjectcheck[]"
                                                 id="<?php echo $subjName; ?>" value="<?php echo $subjectId; ?>">
-                                            <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName"><?php echo $subjName; ?></label>
+                                            <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName" > <?php echo $subjName; ?> </label>
                                         </div>
                                         <?php
                                     }

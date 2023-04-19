@@ -36,15 +36,15 @@ $(document).ready(function(){
     });
     $('#addSubject').click(function(){
         var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="subjectAdd.php?groupId="+groupId+"&addSubject=true";
+        window.location.href="subjectAdd.php?addSubject=true";
     });
     // $('.editSubjBtn').click(function(){
     //     var idSubj= $(this).attr('subjectId');//here subjectId is a custom attribute in that button.
     //     window.location.href="subjectAdd.php?editSubject="+idSubj;
     // });
     $('input.closeSubjBtn').click(function(){
-        var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="subjectAdd.php?groupId="+groupId;
+        // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
+        window.location.href="subjectAdd.php";
     });
     
     //! This part is for checkbox drop down menu to show checked items in select box
