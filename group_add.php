@@ -163,12 +163,15 @@ if ($addingGroup || $edittingGroup) {
                                     $query2 = "SELECT * FROM `subject_master` ORDER BY `sub_Id`";
                                     $result2 = mysqli_query($connection, $query2);
                                     while ($rowarr = mysqli_fetch_array($result2)) {
+                                        $subjName = $rowarr['sub_Name'];
+                                        $subjectId = $rowarr['sub_Id'];
                                         ?>
                                         <div class="checkBoxDiv">
-                                            <input type="checkbox" name="subjectcheck" id="checkBox1" value="TBD">
-                                            <label for="checkBox1" id="SubjCheckBoxName">Test Checkbox</label>
+                                            <input type="checkbox" class="subjectCheckbox" name="subjectcheck[]"
+                                                id="<?php echo $subjName; ?>" value="<?php echo $subjectId; ?>">
+                                            <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName"><?php echo $subjName; ?></label>
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <!-- <div class="checkBoxDiv">
