@@ -9,7 +9,7 @@ if (isset($_REQUEST['mode'])) {
     $teachGender = $_REQUEST['teachGender']; //done
     $teachHQ = $_REQUEST['teachHQ']; //done
     $groupId = $_REQUEST['groupName']; //done
-    $teachAge = $_REQUEST['teachAge'];
+    $teachAge = $_REQUEST['teachAge']; //done
     $query = "INSERT INTO `teachermaster` SET  `name`='$teacherFullName',
                                                                                             `highest_Dg`='$teachHQ', 
                                                                                             `phone_Number`='$teachMobile',
