@@ -18,9 +18,9 @@ session_start();
 					<i class="login__icon fas fa-lock"></i>
 					<input type="password" class="login__input" placeholder="Password">
 				</div>
-				<button class="button login__submit">
+				<button class="button login__submiit">
 					<span class="button__text">Log In Now</span>
-					<i class="button__icon fas fa-chevron-right"></i>
+					<i class="button__iconn fas fa-chevron-right"></i>
 				</button>
 			</form>
 
