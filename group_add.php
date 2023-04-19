@@ -159,6 +159,10 @@ if ($addingGroup || $edittingGroup) {
                                 <div class="selectBox">Select Subjects</div>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                                 <div class="dropDown">
+                                    <?php
+                                    $query2 = "SELECT * FROM `subject_master` WHERE `group_Id`='$groupId1' ";
+                                    $result2 = mysqli_query($connection, $query2);
+                                    ?>
                                     <div class="checkBoxDiv">
                                         <input type="checkbox" name="subjectcheck" id="checkBox1" value="TBD">
                                         <label for="checkBox1" id="SubjCheckBoxName">Test Checkbox</label>

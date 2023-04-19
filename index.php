@@ -1,14 +1,12 @@
 <?php
+include("header.php");
+session_start();
 
 ?>
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <link rel="stylesheet" href="css/index.css">
-    </head>
-    <body>
-    <div class="container">
+<body style="overflow:hidden;"></body>
+<div class="bgImageLogin"></div>
+<div class="container">
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login">
@@ -23,17 +21,18 @@
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
+				</button>
 			</form>
 
 		</div>
 		<div class="screen__background">
 			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape3"></span>
 			<span class="screen__background__shape screen__background__shape2"></span>
 			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
+		</div>
 	</div>
 </div>
-    </body>
-</html>
+<?php
+include("footer.php");
+?>
