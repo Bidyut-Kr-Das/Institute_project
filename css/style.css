@@ -365,7 +365,7 @@ ion-icon {
 
 .dropDown {
     /* display: none; */
-    visibility: hidden;
+    /* visibility: hidden; */
     padding: 1rem;
     height: 20rem;
     width: 170%;

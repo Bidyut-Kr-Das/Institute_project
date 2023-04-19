@@ -160,13 +160,17 @@ if ($addingGroup || $edittingGroup) {
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                                 <div class="dropDown">
                                     <?php
-                                    $query2 = "SELECT * FROM `subject_master` WHERE `group_Id`='$groupId1' ";
+                                    $query2 = "SELECT * FROM `subject_master` ORDER BY `sub_Id`";
                                     $result2 = mysqli_query($connection, $query2);
+                                    while ($rowarr = mysqli_fetch_array($result2)) {
+                                        ?>
+                                        <div class="checkBoxDiv">
+                                            <input type="checkbox" name="subjectcheck" id="checkBox1" value="TBD">
+                                            <label for="checkBox1" id="SubjCheckBoxName">Test Checkbox</label>
+                                        </div>
+                                    <?php
+                                    }
                                     ?>
-                                    <div class="checkBoxDiv">
-                                        <input type="checkbox" name="subjectcheck" id="checkBox1" value="TBD">
-                                        <label for="checkBox1" id="SubjCheckBoxName">Test Checkbox</label>
-                                    </div>
                                     <!-- <div class="checkBoxDiv">
                                         <input type="checkbox" name="subjectcheck" id="checkBox2" value="TBD">
                                         <label for="checkBox2" id="SubjCheckBoxName">Test Checkbox</label>
