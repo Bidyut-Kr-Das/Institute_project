@@ -25,6 +25,9 @@ $(document).ready(function(){
     $('input.closeBtn').click(function(){
         window.location.href="group_add.php";
     });
+    $('input.closeBtnDeleteModal').click(function(){
+        window.location.href="group_add.php";
+    });
     //To bring popup of editting group---------------
     $('a.editGroupBtn').click(function(){
         var idGrp= $(this).attr('id');

@@ -1,87 +1,9 @@
-<?php
-include("connection/connection.php");
+<?php 
 include("nav.php");
-session_start();
-if(empty($_SESSION['id'])){
-    @header("location:index.php?msg=unknown Admin");
-    exit();
-}
-$addingGroup = false;
-$edittingGroup = false;
-$deletingGroup = false;
-$groupName = "";
-$deleteGroupName = "";
-
-if (isset($_REQUEST['addGroup'])) {
-    $addingGroup = true;
-}
-//This is to bring the confirmation of delete group
-if (isset($_REQUEST['deleteGroup'])) {
-    $deletingGroup = true;
-    $groupId = $_REQUEST['deleteGroup'];
-    $query = "SELECT * FROM `groupmaster` WHERE `groupId`='$groupId' ";
-    $result = mysqli_query($connection, $query);
-    $row1 = mysqli_fetch_array($result);
-}
-//This is to bring the confirmation of editting group popup
-if (isset($_REQUEST['editGroup'])) {
-    $edittingGroup = true;
-    // $newgroupId = $_REQUEST['editGroup'];
-    $groupId = $_REQUEST['editGroup'];
-    $query = "SELECT * FROM `groupmaster` WHERE `groupId`='$groupId'";
-    $result = mysqli_query($connection, $query);
-    $row = mysqli_fetch_array($result);
-    $groupName = $row['groupName'];
-}
-//This adds a group 
-if (isset($_REQUEST['add'])) {
-    $newgroupName = $_REQUEST['groupName'];
-    $subjects=$_REQUEST['subjectcheck'];
-    //inserting new group
-    $query = "INSERT INTO `groupmaster` SET `groupName`='$newgroupName'";
-    $result = mysqli_query($connection, $query);
-    //fetching the newly inserted group to get the id
-    $query = "SELECT * FROM `groupmaster` WHERE `groupName`='$newgroupName'";
-    $result=mysqli_query($connection,$query);
-    $rowarr2=mysqli_fetch_array($result);
-    $recentGroupId=$rowarr2['groupId'];
-    foreach($subjects as $subj){
-        //echo "<script>alert(' " . $subj .  " ')</script>";
-        $query1="INSERT INTO `group-subj` SET `groupId`='$recentGroupId',`subjectId`='$subj' ";
-        $result=mysqli_query($connection,$query1);
-    }
-    if ($result) {
-        header("location:group_add.php?msg=Successfully added group");
-    }
-}
-//This edits group
-if (isset($_REQUEST['edit'])) {
-    $newgroupName = $_REQUEST['groupName'];
-
-    $groupId = $_REQUEST['edit'];
-    $query = "UPDATE `groupmaster` SET `groupName`='$newgroupName' WHERE `groupId`='$groupId'";
-    $result = mysqli_query($connection, $query);
-    if ($result) {
-        header("location:group_add.php");
-    }
-}
-//This deletes group along with all the subject in that group
-if (isset($_REQUEST['delete'])) {
-    $groupId = $_REQUEST['delete'];
-    $query = "DELETE FROM `groupmaster` WHERE `groupId`='$groupId' ";
-    $result = mysqli_query($connection, $query);
-    $query = "DELETE FROM `group-subj` WHERE `groupId`='$groupId' ";
-    $result = mysqli_query($connection, $query);
-    if ($result) {
-        @header("location:group_add.php");
-    }
-}
-$query1 = "SELECT * FROM `groupmaster` ORDER BY `groupId`";
-$result1 = mysqli_query($connection, $query1);
-
 
 
 ?>
+
 
 
 <div class="bgImage"></div>

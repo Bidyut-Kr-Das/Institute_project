@@ -57,7 +57,7 @@ include("nav.php");
 ?>
 
 
-<!-- <groupid class="groupIdPassed" groupIdgiven="<?php echo $groupId; ?>"></groupid> -->
+<!-- <groupid class="groupIdPassed" groupIdgiven="<?php //echo $groupId; ?>"></groupid> -->
 <div class="mainDiv">
     <div class="cardHolder">
         <div class="card" id="addSubject">
