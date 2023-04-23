@@ -1,5 +1,10 @@
 <?php
 include("header.php");
+session_start();
+if (empty($_SESSION['id'])) {
+    @header("location:index.php?msg=unknown Admin");
+    exit();
+}
 if (isset($_REQUEST['mode'])) {
     $teachFName = $_REQUEST['teachFName'];
     $teachLName = $_REQUEST['teachLName'];

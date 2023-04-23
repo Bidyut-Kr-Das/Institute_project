@@ -64,7 +64,7 @@ body {
     /* flex-direction: row; */
     justify-content: center;
 
-    gap: 0 4rem;
+    gap: 4rem 4rem;
     grid-template-columns: repeat(auto-fill, 25rem);
 }
 
@@ -237,6 +237,16 @@ ion-icon {
     pointer-events: none;
 }
 
+.popupBody .heading1DeleteModal {
+    color: var(--fontcolor);
+    font-size: 2.8rem;
+    /* padding-left: 2rem;
+    padding-top: 1rem; */
+    font-weight: bold;
+    pointer-events: none;
+    margin-top: 2rem;
+}
+
 .headingsub1 {
     color: var(--accentColor);
     text-decoration: underline;
@@ -280,11 +290,45 @@ ion-icon {
     transition: .5s;
 }
 
+.submitBtnDeleteModal {
+    float: right;
+    /* margin-top: 3rem;
+    margin-left: 3rem; */
+    height: 3.5rem;
+    width: 10rem;
+    background-color: var(--accentColor);
+    border: .1rem solid var(--accentColor);
+    border-radius: .3rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s;
+}
+
 .closeBtn,
 .closeSubjBtn {
     float: right;
     /* margin-top: 3rem; */
-    /* margin-left: 2rem; */
+    /* margin-Right: 8rem; */
+    height: 3.5rem;
+    width: 10rem;
+    background-color: grey;
+    border: .1rem solid grey;
+    border-radius: .3rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s;
+
+}
+
+.closeBtnDeleteModal,
+.closeSubjBtnDeleteModal {
+    float: right;
+    /* margin-top: 3rem; */
+    margin-Right: 8rem;
     height: 3.5rem;
     width: 10rem;
     background-color: grey;
@@ -335,6 +379,19 @@ ion-icon {
     height: 10rem;
 }
 
+.groupNameBody .buttonDivDeleteModal {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    width: 100%;
+    float: right;
+    right: 0;
+    /* position: absolute; */
+
+    align-items: center;
+    /* height: 10rem; */
+}
+
 .selectBoxDropdown {
     height: 5rem;
     width: 60%;
@@ -348,10 +405,14 @@ ion-icon {
     right: 1.6rem;
     font-size: 1.7rem;
     background-color: transparent;
-    /* transform: rotate(180deg); */
+    pointer-events: none;
+    /* tran sform: rotate(180deg); */
 }
 
 .selectBox {
+    /* overflow-x: scroll; */
+    /* overflow-y: hidden; */
+    overflow-y: scroll;
     height: 100%;
     width: 100%;
     border: .3rem solid var(--accentColor);
@@ -361,11 +422,13 @@ ion-icon {
     font-weight: bold;
     padding-left: 2rem;
     padding-block: .8rem;
+    padding-right: 4rem;
 }
 
 .dropDown {
     /* display: none; */
-    visibility: hidden;
+    /* visibility: hidden; */
+    overflow-y: scroll;
     padding: 1rem;
     height: 20rem;
     width: 170%;
@@ -382,6 +445,7 @@ ion-icon {
 
 #SubjCheckBoxName {
     font-size: 1.8rem;
+    cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -390,18 +454,24 @@ input[type="checkbox"] {
 }
 
 .checkBoxDiv {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     padding-inline: 1rem;
     padding-block: 1rem;
     height: 4rem;
-    width: 16rem;
+    cursor: pointer;
+    /* width: 16rem; */
+}
+
+.checkBoxDiv .subjectCheckbox {
+    cursor: pointer;
 }
 
 .groupNameBody {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
+    height: 90%;
 }
 
 form {
@@ -644,7 +714,15 @@ form {
     outline: none;
 }
 
-.button__iconn {
+.login .buttonDivLogin {
+    position: relative;
+}
+
+.login .buttonDivLogin .button__iconn {
+    position: absolute;
+    top: 1.5rem;
+    /* left: 0; */
+    right: 3rem;
     font-size: 24px;
     margin-left: auto;
     color: #007c82;
@@ -1174,7 +1252,7 @@ input[type=number] {
     }
 }
 
-/* .button {      uncomment bidyut
+/* .button {      use multi selector kingshuk
     background-color: #00ADB5;
     color: white;
     height: 2.5rem;
@@ -1188,7 +1266,7 @@ input[type=number] {
 
 } */
 
-/*      uncomment bidyut
+/*      use multi selector kingshuk
 .button:hover {
     background: #0b5ed7;
 } */

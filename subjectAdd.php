@@ -1,9 +1,14 @@
 <?php
-if (empty($_REQUEST['groupId'])) {
-    @header("location:group_add.php?msg=No Group Found");
+session_start();
+if (empty($_SESSION['id'])) {
+    @header("location:index.php?msg=unknown Admin");
     exit();
 }
-$groupId = $_REQUEST['groupId'];
+// if (empty($_REQUEST['groupId'])) {
+//     @header("location:group_add.php?msg=No Group Found");
+//     exit();
+// }
+// $groupId = $_REQUEST['groupId'];
 include("connection/connection.php");
 $addingSubject = false;
 $edittingSubject = false;
@@ -12,7 +17,7 @@ $subjectNameEdit = "";
 if (isset($_REQUEST['addSubject'])) {
     $addingSubject = true;
 }
-//to bring the modal of editting subject 
+//to bring the modal of editting subject
 if (isset($_REQUEST['editSubject'])) {
     $edittingSubject = true;
     $subjectId = $_REQUEST['subjectId'];
@@ -44,7 +49,7 @@ if (isset($_REQUEST['edit'])) {
     }
 }
 //query to bring the right subjects from database
-$query = "SELECT * FROM `subject_master` WHERE `group_Id`='$groupId' ORDER BY 'sub_Id' ";
+$query = "SELECT * FROM `subject_master`ORDER BY 'sub_Id' ";
 $result = mysqli_query($connection, $query);
 
 include("nav.php");
@@ -52,7 +57,7 @@ include("nav.php");
 ?>
 
 
-<groupid class="groupIdPassed" groupIdgiven="<?php echo $groupId; ?>"></groupid>
+<!-- <groupid class="groupIdPassed" groupIdgiven="<?php //echo $groupId; ?>"></groupid> -->
 <div class="mainDiv">
     <div class="cardHolder">
         <div class="card" id="addSubject">
