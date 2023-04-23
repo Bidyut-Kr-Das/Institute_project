@@ -6,20 +6,20 @@ include("header.php");
         <a href="#home" id="logo">Site Logo</a>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
-            <li>
-                <a href="#home">Home</a>
+            <li class="active">
+                <a href="#">Student</a>
             </li>
             <li>
-                <a href="group_add.php">Groups</a>
+                <a href="#">Teacher</a>
             </li>
             <li>
-                <a href="#services">Services</a>
+                <a href="#">Configaration</a>
             </li>
             <li>
-                <a href="#team">Team</a>
+                <a href="#">Payment</a>
             </li>
             <li>
-                <a href="#contact">Contact</a>
+                <a href="#">Logout</a>
             </li>
         </ul>
     </nav>
