@@ -7,19 +7,40 @@ include("header.php");
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
             <li class="active">
-                <a href="#">Student</a>
+                <a href="#" class="f-bl">Student</a>
+                <div class="sub-manu1">
+                    <ul>
+                        <li class="teacher-ul"><a href="#">By Class</a></li>
+                        <li class="teacher-ul"><a href="#">By Group</a></li>
+                        <li class="teacher-ul"><a href="#">By Subject</a></li>
+                    </ul>
+                </div>
             </li>
-            <li>
+            <li class="activeHover">
                 <a href="#">Teacher</a>
+                <div class="sub-manu1">
+                    <ul>
+                        <li class="teacher-ul"><a href="#">By Class</a></li>
+                        <li class="teacher-ul"><a href="#">By Group</a></li>
+                        <li class="teacher-ul"><a href="#">By Subject</a></li>
+                    </ul>
+                </div>
             </li>
-            <li>
-                <a href="#">Configaration</a>
+            <li class="activeHover">
+                <a href="#">Configuration</a>
+                <div class="sub-manu1">
+                    <ul>
+                        <li class="teacher-ul"><a href="#">Add Class</a></li>
+                        <li class="teacher-ul"><a href="#">Add Group</a></li>
+                        <li class="teacher-ul"><a href="#">Add Subject</a></li>
+                    </ul>
+                </div>
             </li>
-            <li>
+            <li class="activeHover">
                 <a href="#">Payment</a>
             </li>
-            <li>
-                <a href="#">Logout</a>
+            <li class="activeHover">
+                <a href="logout.php">Logout</a>
             </li>
         </ul>
     </nav>

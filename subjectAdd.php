@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (empty($_SESSION['id'])) {
-    @header("location:index.php?msg=unknown Admin");
-    exit();
-}
+// session_start();
+// if (empty($_SESSION['id'])) {
+//     @header("location:index.php?msg=unknown Admin");
+//     exit();
+// }
 // if (empty($_REQUEST['groupId'])) {
 //     @header("location:group_add.php?msg=No Group Found");
 //     exit();
@@ -29,13 +29,12 @@ if (isset($_REQUEST['editSubject'])) {
 }
 //queries to add the subject in database
 if (isset($_REQUEST['add'])) {
-    $groupId1 = $_REQUEST['add'];
+    // $groupId1 = $_REQUEST['add'];
     $subjectName = $_REQUEST['subjectNamefield'];
-    $query = "INSERT INTO `subject_master` SET `sub_Name`='$subjectName',
-                                                                                            `group_Id`='$groupId1' ";
+    $query = "INSERT INTO `subject_master` SET `sub_Name`='$subjectName' ";
     $result = mysqli_query($connection, $query);
     if ($result) {
-        @header("location:subjectAdd.php?groupId=" . $groupId);
+        @header("location:subjectAdd.php");
     }
 }
 if (isset($_REQUEST['edit'])) {
@@ -95,23 +94,23 @@ if ($addingSubject || $edittingSubject) {
     <div class="blackwindow">
         <div class="popupMain">
             <div class="popupBody">
+                <div class="subjectNameBody">
                 <?php
                 if ($edittingSubject) {
                     ?>
-                    <div class="heading1">
+                    <div class="heading1Subj">
                         Edit <span class="headingsub1"> Subject </span>
                     </div>
                     <?php
                 } else {
                     ?>
-                    <div class="heading1">
+                    <div class="heading1Subj">
                         Add <span class="headingsub1"> New Subject </span>
                     </div>
                     <?php
                 }
                 ?>
-                <form action="" method="post">
-                    <div class="subjectNameBody">
+                <form action="" method="post" class="subjBodySubPart">
                         <div class="subjectNamePopup">Enter Subject Name:</div>
                         <input type="text" value="<?php echo $subjectNameEdit; ?>" name="subjectNamefield" id=""
                             class="subjectNamefield" required autocomplete="off" />
@@ -126,13 +125,15 @@ if ($addingSubject || $edittingSubject) {
                             <?php
                         }
                         ?>
-                        <input type="submit" value=<?php
-                        if ($edittingSubject) {
-                            echo "'Update'";
-                        } else {
-                            echo "'Add Subject'";
-                        } ?> class="submitBtn" />
-                        <input type="button" value="Cancel" class="closeSubjBtn">
+                        <div class="buttonDivSubjEdit">
+                                <input type="submit" value=<?php
+                            if ($edittingSubject) {
+                                echo "'Update'";
+                            } else {
+                                echo "'Add Subject'";
+                            } ?> class="submitBtnSubj" />
+                            <input type="button" value="Cancel" class="closeSubjBtn">
+                        </div>
                     </div>
                 </form>
             </div>

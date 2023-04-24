@@ -59,18 +59,31 @@ $(document).ready(function(){
         if($(this).is(':checked')){
             subjects.push(subjectName);
         }
-        else{
+        else{//*this part deletes the unchecked value from the select box
             var indexOfUncheck=subjects.indexOf(subjectName);
             subjects.splice(indexOfUncheck,1);
         }
+        
         $.each(subjects, function(i,val){
             result += val +", ";
+            
         });
+        
         if(subjects.length==0){
-            result="Select Subjects"
+            result="Select Subjects  ";
         }
+        result=result.substring(0,(result.length-2));
         $('div.selectBox').html(result);
     });
+    var newres="";
+    $('input.subjectCheckbox').each(function(){
+        if(this.checked){
+            var subj=$(this).attr('id')
+            subjects.push(subj);
+        }
+    })
+
+
     var showing=false;
     $('div.dropDown').hide();
     $('div.selectBox').click(function(){
@@ -88,6 +101,19 @@ $(document).ready(function(){
         
         }
     });
+    let hamMenuIcon = document.getElementById("ham-menu");
+    let navBar = document.getElementById("nav-bar");
+    let navLinks = navBar.querySelectorAll("li");
+    hamMenuIcon.addEventListener("click", () => {
+    navBar.classList.toggle("active");
+    hamMenuIcon.classList.toggle("fa-times");
+    });
+    navLinks.forEach((navLinks) => {
+        navLinks.addEventListener("click", () => {
+        navBar.classList.remove("active");
+        hamMenuIcon.classList.toggle("fa-times");
+    });
+});
 
     
 });

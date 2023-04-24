@@ -11,6 +11,7 @@ $edittingGroup = false;
 $deletingGroup = false;
 $groupName = "";
 $deleteGroupName = "";
+$checkedSubj=array();
 
 if (isset($_REQUEST['addGroup'])) {
     $addingGroup = true;
@@ -32,6 +33,12 @@ if (isset($_REQUEST['editGroup'])) {
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
     $groupName = $row['groupName'];
+    $query="SELECT * FROM `group-subj` WHERE  `groupId`='$groupId'";
+    $result=mysqli_query($connection,$query);
+    
+    while($row=mysqli_fetch_array($result)){
+        array_push($checkedSubj,$row['subjectId']);
+    }
 }
 //This adds a group 
 if (isset($_REQUEST['add'])) {
@@ -57,12 +64,30 @@ if (isset($_REQUEST['add'])) {
 //This edits group
 if (isset($_REQUEST['edit'])) {
     $newgroupName = $_REQUEST['groupName'];
+    $subjects=$_REQUEST['subjectcheck'];
 
     $groupId = $_REQUEST['edit'];
     $query = "UPDATE `groupmaster` SET `groupName`='$newgroupName' WHERE `groupId`='$groupId'";
     $result = mysqli_query($connection, $query);
-    if ($result) {
-        header("location:group_add.php");
+    foreach($subjects as $subj){
+        if(in_array($subj,$checkedSubj)){
+            /*checks if newly selected subject is present in the data base given subject list 
+            if it is present in the list then we will remove the subject from the array */
+            $index=array_search($subj,$checkedSubj);
+            array_splice($checkedSubj,$index,1);
+            
+        }
+        else{
+            $query="INSERT INTO `group-subj`SET `groupId`='$groupId',`subjectId`='$subj' ";
+            $result=mysqli_query($connection,$query);
+        }
+    }
+    foreach($checkedSubj as $value){
+        $query="DELETE FROM `group-subj`WHERE `groupId`='$groupId' AND `subjectId`='$value' ";
+        $res=mysqli_query($connection,$query);
+    }
+    if ($result ) {
+        @header("location:group_add.php?msg=Group updated successfully");
     }
 }
 //This deletes group along with all the subject in that group
@@ -73,7 +98,7 @@ if (isset($_REQUEST['delete'])) {
     $query = "DELETE FROM `group-subj` WHERE `groupId`='$groupId' ";
     $result = mysqli_query($connection, $query);
     if ($result) {
-        @header("location:group_add.php");
+        @header("location:group_add.php?msg=Group Deleted successfully");
     }
 }
 $query1 = "SELECT * FROM `groupmaster` ORDER BY `groupId`";
@@ -107,7 +132,7 @@ $result1 = mysqli_query($connection, $query1);
                             $result2 = mysqli_query($connection, $query2);
                             // $row2 = mysqli_fetch_array($result2);
                             $rownumber = mysqli_num_rows($result2);
-
+                            
                             ?>
                         </h5>
                         <a href="#" class="subject">
@@ -184,6 +209,11 @@ if ($addingGroup || $edittingGroup) {
                                         ?>
                                         <div class="checkBoxDiv">
                                             <input type="checkbox" class="subjectCheckbox" name="subjectcheck[]"
+                                                <?php 
+                                                    if(in_array($subjectId,$checkedSubj)){
+                                                        echo "checked";
+                                                    }
+                                                ?>
                                                 id="<?php echo $subjName; ?>" value="<?php echo $subjectId; ?>">
                                             <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName" > <?php echo $subjName; ?> </label>
                                         </div>
