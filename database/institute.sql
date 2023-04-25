@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 09:00 AM
+-- Generation Time: Apr 25, 2023 at 09:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -165,7 +165,7 @@ INSERT INTO `subject_master` (`sub_Id`, `sub_Name`, `baseFee`, `active`) VALUES
 CREATE TABLE `teach-cls-grp` (
   `Id` int(11) NOT NULL,
   `teacherId` int(11) NOT NULL COMMENT 'foreign key from teacherMaster',
-  `groupId` int(11) NOT NULL COMMENT 'foreign key from groupMaster',
+  `subjectId` int(11) NOT NULL COMMENT 'foreign key from subjectMaster',
   `classId` int(11) NOT NULL COMMENT 'foreign key from classMaster'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
