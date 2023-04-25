@@ -15,114 +15,114 @@
 //         window.location.href="group_add.php";
 //     }
 // }
-$(document).ready(function(){
-    
+$(document).ready(function () {
+
     //adding group popup
-    $('#addGroup').click(function(){
-        window.location.href="group_add.php?addGroup=true";    
+    $('#addGroup').click(function () {
+        window.location.href = "group_add.php?addGroup=true";
     });
     //
-    $('input.closeBtn').click(function(){
-        window.location.href="group_add.php";
+    $('input.closeBtn').click(function () {
+        window.location.href = "group_add.php";
     });
-    $('input.closeBtnDeleteModal').click(function(){
-        window.location.href="group_add.php";
+    $('input.closeBtnDeleteModal').click(function () {
+        window.location.href = "group_add.php";
     });
     //To bring popup of editting group---------------
-    $('a.editGroupBtn').click(function(){
-        var idGrp= $(this).attr('id');
-        window.location.href="group_add.php?editGroup="+idGrp;
+    $('a.editGroupBtn').click(function () {
+        var idGrp = $(this).attr('id');
+        window.location.href = "group_add.php?editGroup=" + idGrp;
     });
-    $('div.deleteGrpBtn').click(function(){
-        var deleteGrpId=$(this).attr('deleteGrpId');
-        window.location.href="group_add.php?deleteGroup="+deleteGrpId;
+    $('div.deleteGrpBtn').click(function () {
+        var deleteGrpId = $(this).attr('deleteGrpId');
+        window.location.href = "group_add.php?deleteGroup=" + deleteGrpId;
     });
-    $('#addSubject').click(function(){
+    $('#addSubject').click(function () {
         // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="subjectAdd.php?addSubject=true";
+        window.location.href = "subjectAdd.php?addSubject=true";
     });
-    $('#addClass').click(function(){
+    $('#addClass').click(function () {
         // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="classAdd.php?addClass=true";
+        window.location.href = "classAdd.php?addClass=true";
     });
     // $('.editSubjBtn').click(function(){
     //     var idSubj= $(this).attr('subjectId');//here subjectId is a custom attribute in that button.
     //     window.location.href="subjectAdd.php?editSubject="+idSubj;
     // });
-    $('input.closeSubjBtn').click(function(){
+    $('input.closeSubjBtn').click(function () {
         // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="subjectAdd.php";
+        window.location.href = "subjectAdd.php";
     });
-    $('input.closeClsBtn').click(function(){
+    $('input.closeClsBtn').click(function () {
         // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
-        window.location.href="classAdd.php";
+        window.location.href = "classAdd.php";
     });
-    
+
     //! This part is for checkbox drop down menu to show checked items in select box
-    var subjects= [];
-    $('input.subjectCheckbox').change(function(){
-        var result="";
-        var subjectName=$(this).attr('id');
+    var subjects = [];
+    $('input.subjectCheckbox').change(function () {
+        var result = "";
+        var subjectName = $(this).attr('id');
         console.log(subjectName)
-        if($(this).is(':checked')){
+        if ($(this).is(':checked')) {
             subjects.push(subjectName);
         }
-        else{//*this part deletes the unchecked value from the select box
-            var indexOfUncheck=subjects.indexOf(subjectName);
-            subjects.splice(indexOfUncheck,1);
+        else {//*this part deletes the unchecked value from the select box
+            var indexOfUncheck = subjects.indexOf(subjectName);
+            subjects.splice(indexOfUncheck, 1);
         }
-        
-        $.each(subjects, function(i,val){
-            result += val +", ";
-            
+
+        $.each(subjects, function (i, val) {
+            result += val + ", ";
+
         });
-        
-        if(subjects.length==0){
-            result="Select Subjects  ";
+
+        if (subjects.length == 0) {
+            result = "Select Subjects  ";
         }
-        result=result.substring(0,(result.length-2));
+        result = result.substring(0, (result.length - 2));
         $('div.selectBox').html(result);
     });
-    var newres="";
-    $('input.subjectCheckbox').each(function(){
-        if(this.checked){
-            var subj=$(this).attr('id')
+    var newres = "";
+    $('input.subjectCheckbox').each(function () {
+        if (this.checked) {
+            var subj = $(this).attr('id')
             subjects.push(subj);
         }
     })
 
 
-    var showing=false;
+    var showing = false;
     $('div.dropDown').hide();
-    $('div.selectBox').click(function(){
-        if(showing==false){
-            $('.fa-chevron-down').css("transform","rotate(180deg)");
+    $('div.selectBox').click(function () {
+        if (showing == false) {
+            $('.fa-chevron-down').css("transform", "rotate(180deg)");
             $('div.dropDown').show();
-            showing=true;
+            showing = true;
         }
-        else{
+        else {
             $('.fa-chevron-down').removeAttr('style');
             // $('div.dropDown').removeAttr('style');
             $('div.dropDown').hide();
-            
-            showing=false;
-        
+
+            showing = false;
+
         }
     });
     let hamMenuIcon = document.getElementById("ham-menu");
     let navBar = document.getElementById("nav-bar");
     let navLinks = navBar.querySelectorAll("li");
     hamMenuIcon.addEventListener("click", () => {
-    navBar.classList.toggle("active");
-    hamMenuIcon.classList.toggle("fa-times");
+        navBar.classList.toggle("active");
+        hamMenuIcon.classList.toggle("fa-times");
     });
     navLinks.forEach((navLinks) => {
         navLinks.addEventListener("click", () => {
-        navBar.classList.remove("active");
-        hamMenuIcon.classList.toggle("fa-times");
+            navBar.classList.remove("active");
+            hamMenuIcon.classList.toggle("fa-times");
+        });
     });
-});
 
-    
+
 });
 
