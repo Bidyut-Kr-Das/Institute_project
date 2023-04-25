@@ -10,9 +10,9 @@ include("header.php");
                 <a href="#" class="f-bl">Student</a>
                 <div class="sub-manu1">
                     <ul>
-                        <li class="teacher-ul"><a href="#">By Class</a></li>
-                        <li class="teacher-ul"><a href="#">By Group</a></li>
-                        <li class="teacher-ul"><a href="#">By Subject</a></li>
+                        <li class="teacher-ul"><a href="studFilter.php?studByClass=true">By Class</a></li>
+                        <li class="teacher-ul"><a href="studFilter.php?studByGroup=true">By Group</a></li>
+                        <li class="teacher-ul"><a href="studFilter.php?studBySubj=true">By Subject</a></li>
                     </ul>
                 </div>
             </li>

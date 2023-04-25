@@ -49,7 +49,19 @@ if(isset($_REQUEST['edit'])){
         @header("location:classAdd.php?msg=Successfully updated Class");
     }
 }   
-//todo-- This parts deletes class from 3 table respectively
+//todo-- This parts deletes class from 3 table respectively `classmaster`,`stud-cls-grp` and `teach-cls-grp`
+if(isset($_REQUEST['delete'])){
+    $classId=$_REQUEST['delete'];
+    $query="DELETE FROM `classmaster` WHERE `classId`='$classId' ";
+    $result1=mysqli_query($connection,$query);
+    $query="DELETE FROM `stud-cls-grp` WHERE `classId`='$classId'";
+    $result2=mysqli_query($connection,$query);
+    $query="DELETE FROM `teach-cls-grp` WHERE  `classId`='$classId'";
+    $result3=mysqli_query($connection,$query);
+    if($result1&&$result2&&$result3){
+        @header("location:classAdd.php?msg=Successfully deleted");
+    }
+}
 $query="SELECT * FROM `classmaster` ORDER BY `classId` DESC";
 $res=mysqli_query($connection,$query);
 

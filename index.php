@@ -10,7 +10,7 @@ if (isset($_REQUEST['mode'])) {
 		$rowarr = mysqli_fetch_array($res);
 		if ($password == $rowarr['password']) {
 			$_SESSION['id'] = $rowarr['id'];
-			@header("location:group_add.php");
+			@header("location:studFilter.php?studByClass=true");
 		}
 	}
 }
