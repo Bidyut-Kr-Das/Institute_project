@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 05:48 AM
+-- Generation Time: Apr 25, 2023 at 09:00 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -49,10 +49,18 @@ INSERT INTO `admin` (`id`, `username`, `password`, `emailId`) VALUES
 --
 
 CREATE TABLE `classmaster` (
-  `Id` int(11) NOT NULL,
+  `classId` int(11) NOT NULL,
   `className` varchar(255) NOT NULL,
+  `baseFee` int(11) NOT NULL,
   `active` char(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `classmaster`
+--
+
+INSERT INTO `classmaster` (`classId`, `className`, `baseFee`, `active`) VALUES
+(1, 'Class VIII', 800, 'Y');
 
 -- --------------------------------------------------------
 
@@ -66,16 +74,6 @@ CREATE TABLE `group-subj` (
   `subjectId` int(11) NOT NULL COMMENT 'foreign key from subejctMaster'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `group-subj`
---
-
-INSERT INTO `group-subj` (`Id`, `groupId`, `subjectId`) VALUES
-(19, 34, 6),
-(21, 34, 8),
-(22, 34, 10),
-(23, 34, 9);
-
 -- --------------------------------------------------------
 
 --
@@ -85,6 +83,7 @@ INSERT INTO `group-subj` (`Id`, `groupId`, `subjectId`) VALUES
 CREATE TABLE `groupmaster` (
   `groupId` int(11) NOT NULL,
   `groupName` varchar(255) NOT NULL,
+  `estimatedFee` int(11) NOT NULL,
   `active` char(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -92,8 +91,8 @@ CREATE TABLE `groupmaster` (
 -- Dumping data for table `groupmaster`
 --
 
-INSERT INTO `groupmaster` (`groupId`, `groupName`, `active`) VALUES
-(34, 'Arts', 'Y');
+INSERT INTO `groupmaster` (`groupId`, `groupName`, `estimatedFee`, `active`) VALUES
+(34, 'Arts', 0, 'Y');
 
 -- --------------------------------------------------------
 
@@ -104,8 +103,8 @@ INSERT INTO `groupmaster` (`groupId`, `groupName`, `active`) VALUES
 CREATE TABLE `stud-cls-grp` (
   `Id` int(11) NOT NULL,
   `studId` int(11) NOT NULL,
-  `groupId` int(11) NOT NULL,
-  `subjId` int(11) NOT NULL
+  `classId` int(11) NOT NULL,
+  `groupId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -125,6 +124,7 @@ CREATE TABLE `studentmaster` (
   `email` varchar(255) NOT NULL,
   `gender` char(1) NOT NULL,
   `age` int(11) NOT NULL,
+  `estmFee` int(11) NOT NULL,
   `active` char(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -132,9 +132,9 @@ CREATE TABLE `studentmaster` (
 -- Dumping data for table `studentmaster`
 --
 
-INSERT INTO `studentmaster` (`id`, `studentName`, `studPhNo`, `parentName`, `prntPhNo`, `class`, `eduBoard`, `email`, `gender`, `age`, `active`) VALUES
-(1, 'Kingshuk Sil', '6969696969', 'jani na', '0101010101', '10', 'CBSE', 'kingshukvoda@voda.com', 'F', 70, 'Y'),
-(2, 'Kingshuk Sil', '7834738472', 'jani na', '5656566', '898', 'WBBSE', 'kingshukvoda@voda.com', 'M', 56, 'Y');
+INSERT INTO `studentmaster` (`id`, `studentName`, `studPhNo`, `parentName`, `prntPhNo`, `class`, `eduBoard`, `email`, `gender`, `age`, `estmFee`, `active`) VALUES
+(1, 'Kingshuk Sil', '6969696969', 'jani na', '0101010101', '10', 'CBSE', 'kingshukvoda@voda.com', 'F', 70, 0, 'Y'),
+(2, 'Kingshuk Sil', '7834738472', 'jani na', '5656566', '898', 'WBBSE', 'kingshukvoda@voda.com', 'M', 56, 0, 'Y');
 
 -- --------------------------------------------------------
 
@@ -145,6 +145,7 @@ INSERT INTO `studentmaster` (`id`, `studentName`, `studPhNo`, `parentName`, `prn
 CREATE TABLE `subject_master` (
   `sub_Id` int(11) NOT NULL,
   `sub_Name` varchar(255) NOT NULL,
+  `baseFee` int(11) NOT NULL,
   `active` char(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -152,24 +153,8 @@ CREATE TABLE `subject_master` (
 -- Dumping data for table `subject_master`
 --
 
-INSERT INTO `subject_master` (`sub_Id`, `sub_Name`, `active`) VALUES
-(1, 'Bengali', 'Y'),
-(6, 'English', 'Y'),
-(7, 'History', 'Y'),
-(8, 'Geography', 'Y'),
-(9, 'Political Science', 'Y'),
-(10, 'I am out of Subjects', 'Y'),
-(15, 'Kingshuk subject', 'Y'),
-(16, 'Physics', 'Y'),
-(17, 'Chemistry', 'Y'),
-(18, 'Mathematics', 'Y'),
-(19, 'Computer Application', 'Y'),
-(20, 'business', 'Y'),
-(21, 'test1', 'Y'),
-(22, 'tst2', 'Y'),
-(23, 'test3', 'Y'),
-(24, 'new subject', 'Y'),
-(25, 'another subject', 'Y');
+INSERT INTO `subject_master` (`sub_Id`, `sub_Name`, `baseFee`, `active`) VALUES
+(30, 'Bengali', 200, 'Y');
 
 -- --------------------------------------------------------
 
@@ -199,15 +184,16 @@ CREATE TABLE `teachermaster` (
   `email` varchar(255) NOT NULL,
   `active` char(1) NOT NULL DEFAULT 'Y',
   `gender` char(1) NOT NULL,
-  `age` int(11) NOT NULL
+  `age` int(11) NOT NULL,
+  `estmSalary` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teachermaster`
 --
 
-INSERT INTO `teachermaster` (`teacher_Id`, `name`, `highest_Dg`, `phone_Number`, `group_Id`, `email`, `active`, `gender`, `age`) VALUES
-(1, 'Teacher Test idk', '10', '4543', 0, 'mail', 'Y', 'M', 56);
+INSERT INTO `teachermaster` (`teacher_Id`, `name`, `highest_Dg`, `phone_Number`, `group_Id`, `email`, `active`, `gender`, `age`, `estmSalary`) VALUES
+(1, 'Teacher Test idk', '10', '4543', 0, 'mail', 'Y', 'M', 56, 0);
 
 --
 -- Indexes for dumped tables
@@ -223,7 +209,7 @@ ALTER TABLE `admin`
 -- Indexes for table `classmaster`
 --
 ALTER TABLE `classmaster`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`classId`);
 
 --
 -- Indexes for table `group-subj`
@@ -281,19 +267,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `classmaster`
 --
 ALTER TABLE `classmaster`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `classId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `group-subj`
 --
 ALTER TABLE `group-subj`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `groupmaster`
 --
 ALTER TABLE `groupmaster`
-  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `stud-cls-grp`
@@ -311,7 +297,7 @@ ALTER TABLE `studentmaster`
 -- AUTO_INCREMENT for table `subject_master`
 --
 ALTER TABLE `subject_master`
-  MODIFY `sub_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `sub_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `teach-cls-grp`
