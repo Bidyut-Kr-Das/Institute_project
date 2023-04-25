@@ -1635,3 +1635,8 @@ nav ul li:hover .sub-manu1 ul li:last-child {
     background-color: var(--bgcolor);
     outline: #0b5ed7;
 }
+
+.card-title-filter {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
