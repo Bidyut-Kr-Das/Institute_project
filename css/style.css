@@ -1304,7 +1304,7 @@ input[type=number] {
     }
 }
 
-/* .button {      use multi selector kingshuk
+.inputname .button {
     background-color: #00ADB5;
     color: white;
     height: 2.5rem;
@@ -1316,12 +1316,12 @@ input[type=number] {
     cursor: pointer;
     margin-bottom: 0.9rem;
 
-} */
+}
 
-/*      use multi selector kingshuk
-.button:hover {
+
+.inputname .button:hover {
     background: #0b5ed7;
-} */
+}
 
 @media only screen and (min-width: 300px) and (max-width: 500px) {
     .heading {
