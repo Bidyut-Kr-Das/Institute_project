@@ -30,9 +30,9 @@ include("header.php");
                 <a href="#">Configuration</a>
                 <div class="sub-manu1">
                     <ul>
-                        <li class="teacher-ul"><a href="#">Add Class</a></li>
-                        <li class="teacher-ul"><a href="#">Add Group</a></li>
-                        <li class="teacher-ul"><a href="#">Add Subject</a></li>
+                        <li class="teacher-ul"><a href="classAdd.php">Add Class</a></li>
+                        <li class="teacher-ul"><a href="group_add.php">Add Group</a></li>
+                        <li class="teacher-ul"><a href="subjectAdd.php">Add Subject</a></li>
                     </ul>
                 </div>
             </li>

@@ -108,7 +108,7 @@ ion-icon {
     font-size: 2rem;
     margin-left: 1rem;
     cursor: pointer;
-    color: #ff5252;
+    color: #0b5ed7;
     transition: .4s;
 }
 
@@ -116,7 +116,7 @@ ion-icon {
     font-size: 2rem;
     margin-left: 1rem;
     cursor: pointer;
-    color: #ff5252;
+    color: #0b5ed7;
     transition: .4s;
 }
 
@@ -307,6 +307,7 @@ ion-icon {
 
 .submitBtnSubj {
     width: 12rem;
+    margin-left: 6rem;
 }
 
 .submitBtnDeleteModal {
@@ -326,7 +327,8 @@ ion-icon {
 }
 
 .closeBtn,
-.closeSubjBtn {
+.closeSubjBtn,
+.closeClsBtn {
     float: right;
     /* margin-top: 3rem; */
     /* margin-Right: 8rem; */
@@ -343,9 +345,9 @@ ion-icon {
 
 }
 
-.closeSubjBtn {
+/* .closeSubjBtn {
     margin-left: 6rem;
-}
+} */
 
 .closeBtnDeleteModal,
 .closeSubjBtnDeleteModal {
@@ -370,7 +372,9 @@ ion-icon {
 .closeBtn:hover,
 .closeBtn:active,
 .closeSubjBtn:hover,
-.closeSubjBtn:active {
+.closeClsBtn:hover,
+.closeSubjBtn:active,
+.closeClsBtn:active {
     background-color: #0b5ed7;
     border: .1rem solid #0b5ed7;
 }
@@ -434,7 +438,7 @@ ion-icon {
 .buttonDivSubjEdit {
     height: 40%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     /* align-items: end; */
 
 }
@@ -1461,6 +1465,8 @@ nav ul a {
 
 .f-bl {
     color: black;
+    height: 100%;
+    margin-top: 2rem;
 }
 
 nav ul a:hover {
@@ -1599,9 +1605,7 @@ nav ul li:hover .sub-manu1 ul li:last-child {
         gap: 0;
     }
 
-    .studentnav {
-        background-color: #00adb5;
-    }
+
 }
 
 @media only screen and (max-width: 575px) {
@@ -1617,4 +1621,17 @@ nav ul li:hover .sub-manu1 ul li:last-child {
         top: 65.18px;
         height: calc(100vh - 65.18px);
     }
+}
+
+.buttonDivSubjEdit #baseSubjFees,
+.buttonDivSubjEdit #baseClsFees {
+    height: 4rem;
+    width: 40%;
+    border: .3rem solid var(--accentColor);
+    border-radius: .5rem;
+    color: var(--fontcolor);
+    padding-left: 1.6rem;
+    font-size: 1.6rem;
+    background-color: var(--bgcolor);
+    outline: #0b5ed7;
 }

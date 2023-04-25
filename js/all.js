@@ -38,8 +38,12 @@ $(document).ready(function(){
         window.location.href="group_add.php?deleteGroup="+deleteGrpId;
     });
     $('#addSubject').click(function(){
-        var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
+        // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
         window.location.href="subjectAdd.php?addSubject=true";
+    });
+    $('#addClass').click(function(){
+        // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
+        window.location.href="classAdd.php?addClass=true";
     });
     // $('.editSubjBtn').click(function(){
     //     var idSubj= $(this).attr('subjectId');//here subjectId is a custom attribute in that button.
@@ -48,6 +52,10 @@ $(document).ready(function(){
     $('input.closeSubjBtn').click(function(){
         // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
         window.location.href="subjectAdd.php";
+    });
+    $('input.closeClsBtn').click(function(){
+        // var groupId=$('groupid.groupIdPassed').attr('groupidgiven');
+        window.location.href="classAdd.php";
     });
     
     //! This part is for checkbox drop down menu to show checked items in select box

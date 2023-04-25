@@ -13,38 +13,62 @@ include("connection/connection.php");
 $addingSubject = false;
 $edittingSubject = false;
 $subjectNameEdit = "";
+$deletingSubject=false;
 //to bring the modal of adding subject.
 if (isset($_REQUEST['addSubject'])) {
     $addingSubject = true;
+}
+if(isset($_REQUEST['deleteSubj'])){
+    $deletingSubject=true;
+    $subjectId=$_REQUEST['subjId'];
+    $query="SELECT * FROM `subject_master` WHERE `sub_Id`='$subjectId'";
+    $result=mysqli_query($connection,$query);
+    $row=mysqli_fetch_array($result);
+    $subjName=$row['sub_Name'];
+    $subId=$row['sub_Id'];
 }
 //to bring the modal of editting subject
 if (isset($_REQUEST['editSubject'])) {
     $edittingSubject = true;
     $subjectId = $_REQUEST['subjectId'];
-    $query = "SELECT * FROM `subject_master`WHERE `group_Id`='$groupId' AND `sub_Id`='$subjectId'";
+    $query = "SELECT * FROM `subject_master`WHERE `sub_Id`='$subjectId'";
     $result = mysqli_query($connection, $query);
     $rowarr1 = mysqli_fetch_array($result);
     $subjectNameEdit = $rowarr1['sub_Name'];
     $subjectId = $rowarr1['sub_Id'];
+    $subjectBaseFee=$rowarr1['baseFee'];
 }
 //queries to add the subject in database
 if (isset($_REQUEST['add'])) {
     // $groupId1 = $_REQUEST['add'];
     $subjectName = $_REQUEST['subjectNamefield'];
-    $query = "INSERT INTO `subject_master` SET `sub_Name`='$subjectName' ";
+    $baseSubjFee= $_REQUEST['baseSubjFees'];
+    $query = "INSERT INTO `subject_master` SET `sub_Name`='$subjectName', `baseFee`='$baseSubjFee'";
     $result = mysqli_query($connection, $query);
     if ($result) {
-        @header("location:subjectAdd.php");
+        @header("location:subjectAdd.php?msg=Subject Added SuccessFully");
     }
 }
 if (isset($_REQUEST['edit'])) {
     $groupId1 = $_REQUEST['groupId'];
     $subjectId1 = $_REQUEST['edit'];
     $subjectName = $_REQUEST['subjectNamefield'];
-    $query = "UPDATE `subject_master` SET `sub_Name`='$subjectName' WHERE `group_Id`='$groupId1' AND `sub_Id`='$subjectId1' ";
+    $newBaseFee=$_REQUEST['baseSubjFees'];
+    $query = "UPDATE `subject_master` SET `sub_Name`='$subjectName',`baseFee`='$newBaseFee'WHERE `sub_Id`='$subjectId1' ";
     $result = mysqli_query($connection, $query);
     if ($result) {
-        @header("location:subjectAdd.php?groupId=" . $groupId1);
+        @header("location:subjectAdd.php?msg=Subject Updated Successfully");
+    }
+}
+//todo: query to delete subject from database
+if(isset($_REQUEST['delete'])){
+    $subId=$_REQUEST['delete'];
+    $query="DELETE FROM `subject_master` WHERE `sub_Id`='$subId'";
+    $result=mysqli_query($connection,$query);
+    $query="DELETE FROM `group-subj` WHERE `subjectId`='$subId'";
+    $result=mysqli_query($connection,$query);
+    if($result){
+        @header("location:subjectAdd.php?msg=successfully deleted subject");
     }
 }
 //query to bring the right subjects from database
@@ -76,10 +100,10 @@ include("nav.php");
                         </h5>
                     </div>
                     <div class="buttonPart">
-                        <div class="deleteBtnSubj"><i class="fa-solid fa-trash"></i></div>
-                        <a href="subjectAdd.php?editSubject=true&groupId=<?php echo $groupId; ?>&subjectId=<?php echo $rowarr['sub_Id']; ?>"
-                            class="btn btn-primary editSubjBtn" id="" subjectId=""><i class="fa-solid fa-pen"></i> Edit
-                        </a>
+                        <a href="subjectAdd.php?editSubject=true&subjectId=<?php echo $rowarr['sub_Id']; ?>"
+                        class="btn btn-primary editSubjBtn" id="" subjectId=""><i class="fa-solid fa-pen"></i> Edit
+                    </a>
+                    <a href="subjectAdd.php?deleteSubj=true&subjId=<?php echo $rowarr['sub_Id'];?>"class="deleteBtnSubj"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </div>
             </div>
@@ -126,6 +150,7 @@ if ($addingSubject || $edittingSubject) {
                         }
                         ?>
                         <div class="buttonDivSubjEdit">
+                            <input type="number" value="<?php echo $subjectBaseFee;?>"name="baseSubjFees" id="baseSubjFees" placeholder="Base Subject Fee" required>
                                 <input type="submit" value=<?php
                             if ($edittingSubject) {
                                 echo "'Update'";
@@ -133,6 +158,40 @@ if ($addingSubject || $edittingSubject) {
                                 echo "'Add Subject'";
                             } ?> class="submitBtnSubj" />
                             <input type="button" value="Cancel" class="closeSubjBtn">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+if ($deletingSubject) {
+    ?>
+    <div class="blackwindow">
+        <div class="popupMain">
+            <div class="popupBody">
+                <form action="">
+                <div class="heading1DeleteModal">
+                    Delete <span class="headingsub1"> The Subject? </span>
+                </div>
+                    <div class="groupNameBody">
+                        <div class="inputField">
+
+                            <div class="groupNamePopup">Are you sure you want to delete <span class="colorGrpName">
+                                    <?php echo $subjName; ?>
+                                </span>
+                                Subject?
+                            </div>
+                            <div class="warning">
+                                <p><strong>Warning!</strong> It will delete the subject from all the groups permanently
+                                   </p>
+                            </div>   
+                        </div>
+                        <div class="buttonDivDeleteModal">
+                            <input type="hidden" name="delete" value="<?php echo $subId; ?>" />
+                            <input type="submit" value="Yes" class="submitBtnDeleteModal" />
+                            <a href="subjectAdd.php"><input type="button" class="closeBtnDeleteModal" value="No"></a>
                         </div>
                     </div>
                 </form>
