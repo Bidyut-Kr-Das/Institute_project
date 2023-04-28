@@ -25,6 +25,7 @@ include("nav.php");
             <th>Phone no.</th>
             <th>Email</th>
             <th id="cl">Class</th>
+            <th>Gender</th>
             <th colspan="2" id="cll">Action</th>
         </tr>
       </thead>
@@ -34,6 +35,7 @@ include("nav.php");
           <td>0987654321 </td>
           <td>loverboy69@harder.com</td>
           <td id="clas">12</td>
+          <td >m/f</td>
           <td ><button id="butn_s"> Edit</button></td>
           <td id="info_hr"><button id="butn_s"> Delete</button></td>
         </tr>
