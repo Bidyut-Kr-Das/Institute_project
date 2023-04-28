@@ -78,14 +78,21 @@ if (isset($_REQUEST['mode'])) {
                 <span class="span1 board">
 
                     <ion-icon name="bookmarks"></ion-icon>
-                    <select class="studname" name="groupName">
-                        <option> Subjects</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
+                    <div class="studname openSubj--k">Select Subject</div>
+                    <div class="drop--downSubj--k">
+                        <?php 
+                        $query="SELECT * FROM `subject_master`ORDER BY `sub_Id`";
+                        $res=mysqli_query($connection,$query);
+                        while($rowarr=mysqli_fetch_array($res)){      
+                        ?>
+                        <div class="checkboxDiv--k">
+                            <input type="checkbox" class="checkbox--form--stud" value="<?php echo $rowarr['sub_Id'];?>" name="group-add--form[]" id="<?php echo $rowarr['sub_Name'];?>">
+                            <label for="<?php echo $rowarr['sub_Name'];?>"><?php echo $rowarr['sub_Name'];?></label>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </span>
             </div>
 
@@ -99,14 +106,21 @@ if (isset($_REQUEST['mode'])) {
                 <span class="span1 board">
 
                     <ion-icon name="bookmarks"></ion-icon>
-                    <select class="studname" name="groupName">
-                        <option> classes</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
+                    <div class="studname openClass--k">Select Class</div>
+                    <div class="drop--downClass--k">
+                        <?php 
+                        $query="SELECT * FROM `classmaster`ORDER BY `classId`";
+                        $res=mysqli_query($connection,$query);
+                        while($rowarr=mysqli_fetch_array($res)){      
+                        ?>
+                        <div class="checkboxDiv--k">
+                            <input type="checkbox" class="checkbox--form--stud" value="<?php echo $rowarr['classId'];?>" name="group-add--form[]" id="<?php echo $rowarr['className'];?>">
+                            <label for="<?php echo $rowarr['className'];?>"><?php echo $rowarr['className'];?></label>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </span>
             </div>
 

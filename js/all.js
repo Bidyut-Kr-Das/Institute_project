@@ -109,20 +109,62 @@ $(document).ready(function () {
 
         }
     });
-    let hamMenuIcon = document.getElementById("ham-menu");
-    let navBar = document.getElementById("nav-bar");
-    let navLinks = navBar.querySelectorAll("li");
-    hamMenuIcon.addEventListener("click", () => {
-        navBar.classList.toggle("active");
-        hamMenuIcon.classList.toggle("fa-times");
+    // let hamMenuIcon = document.getElementById("ham-menu");
+    // let navBar = document.getElementById("nav-bar");
+    // let navLinks = navBar.querySelectorAll("li");
+    // hamMenuIcon.addEventListener("click", () => {
+    //     navBar.classList.toggle("active");
+    //     hamMenuIcon.classList.toggle("fa-times");
+    // });
+    // navLinks.forEach((navLinks) => {
+    //     navLinks.addEventListener("click", () => {
+    //         navBar.classList.remove("active");
+    //         hamMenuIcon.classList.toggle("fa-times");
+    //     });
+    // });
+    //todo--It will show group.
+    $('div.drop--down--k').hide();
+    
+    let showingGroup=false;
+    
+    $('div.openGroup--k').click(function(){
+        if(showingGroup==false){
+            $('div.drop--down--k').show();
+            showingGroup=true;
+        }
+        else{
+            $('div.drop--down--k').hide();
+            showingGroup=false;
+        }
     });
-    navLinks.forEach((navLinks) => {
-        navLinks.addEventListener("click", () => {
-            navBar.classList.remove("active");
-            hamMenuIcon.classList.toggle("fa-times");
-        });
+    //todo--It opens subject dropdown
+    let showingSubj=false;
+    $('div.drop--downSubj--k').hide();
+    $('div.openSubj--k').click(function(){
+        if(!showingSubj){
+            $('div.drop--downSubj--k').show();
+            showingSubj=true;
+        }
+        else{
+            $('div.drop--downSubj--k').hide();
+            showingSubj=false;
+        }
     });
+    //todo--IT opens class dropdown
 
+    let showingClass=false;
+    $('div.drop--downClass--k').hide();
+    $('div.openClass--k').click(function(){
+        if(!showingClass){
+            $('div.drop--downClass--k').show();
+            showingClass=true;
+        }
+        else{
+            $('div.drop--downClass--k').hide();
+            showingClass=false;
+        }
+    });
+    
 
 });
 

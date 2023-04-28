@@ -23,6 +23,7 @@ if (isset($_REQUEST['mode'])) {
     $studAge = $_REQUEST['studAge']; //done
     $guardName = $_REQUEST['guardName']; //done
     $guardMobile = $_REQUEST['guardMobile']; //done
+    $groups=$_REQUEST['group-add--form'];//done
     $query = "INSERT INTO `studentmaster` SET `studentName`='$studfullName',
                                                                                             `studPhNo`='$studMobile',
                                                                                             `email`='$studEmail',
@@ -33,6 +34,13 @@ if (isset($_REQUEST['mode'])) {
                                                                                             `parentName`='$guardName',
                                                                                             `prntPhNo`='$guardMobile'";
     $result = mysqli_query($connection, $query);
+    $query="SELECT s.id FROM studentmaster as s WHERE `studentName`='$studfullName' AND `studPhNo`='$studMobile' ";
+    $result=mysqli_query($connection,$query);
+    $row=mysqli_fetch_array($result);
+    foreach($groups as $val){
+        $query="INSERT INTO `stud-cls-grp` SET `studId`='$row',`classId`='$studClass',`groupId`='$val' ";
+        $result=mysqli_query($connection,$query);
+    }
     if ($result) {
         @header("location:group_add.php");
     }
@@ -89,7 +97,15 @@ if (isset($_REQUEST['mode'])) {
 
                     <select class="studname" name="studBoard">
                         <option>Select Your Class</option>
-                        <option value=""></option>
+                        <?php 
+                        $query="SELECT * FROM  `classmaster` ORDER BY  `classId` DESC";
+                        $res=mysqli_query($connection,$query);
+                        while($row=mysqli_fetch_array($res)){
+                        ?>
+                        <option value="<?php echo $row['classId'];?>"><?php echo $row['className'];?></option>
+                    <?php
+                        }
+                    ?>
                     </select>
                 </span>
                 <span class="span1 board">
@@ -116,11 +132,21 @@ if (isset($_REQUEST['mode'])) {
                 <span class="span1 board">
                 <ion-icon name="people"></ion-icon>
 
-                    <select class="studname" name="studBoard">
-                        <option>Select Your Groups</option>
-                        <option value=""></option>
-                      
-                    </select>
+                    <div class="studname openGroup--k">Group</div>
+                    <div class="drop--down--k">
+                        <?php 
+                        $query="SELECT * FROM `groupmaster`ORDER BY `groupId`";
+                        $res=mysqli_query($connection,$query);
+                        while($rowarr=mysqli_fetch_array($res)){      
+                        ?>
+                        <div class="checkboxDiv--k">
+                            <input type="checkbox" class="checkbox--form--stud" value="<?php echo $rowarr['groupId'];?>" name="group-add--form[]" id="<?php echo $rowarr['groupName'];?>">
+                            <label for="<?php echo $rowarr['groupName'];?>"><?php echo $rowarr['groupName'];?></label>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </span>
             </div>
 
