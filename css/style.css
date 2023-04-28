@@ -1704,6 +1704,22 @@ table {
 
 }
 
+.adds {
+
+    display: flex;
+    justify-content: right;
+    margin-bottom: 3rem;
+    margin-right: 6rem;
+
+}
+
+tbody #clas,
+#cl,
+#cll {
+
+    text-align: center;
+}
+
 /* tr {
     width: 100%;
 } */
@@ -1751,7 +1767,6 @@ td {
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
 }
-
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
@@ -1806,6 +1821,7 @@ section {
     width: 100%;
     background: #07051a;
 } */
+
 .search_S {
     /* display: none; */
     /* width: 40%; */
@@ -1894,6 +1910,9 @@ section {
     font-weight: bold;
 }
 
+
+
+
 .studname {
     background-color: white;
 }
@@ -1920,4 +1939,41 @@ label {
 
 .checkbox--form--stud {
     vertical-align: middle;
+}
+
+@media only screen and (min-width: 768px) {
+
+    #info_h {
+        font-size: 15px;
+    }
+}
+
+
+@media only screen and (min-width: 450px) and (max-width: 767px) {
+
+
+    #info_h {
+        font-size: 16px;
+    }
+}
+
+
+/* @media only screen and (max-width: 449px) {
+
+
+    section .tbl {
+        font-size: 1px;
+        height: 10px;
+        width: 10px;
+        color: red;
+    }
+} */
+
+@media only screen and (max-width: 1020px) {
+
+    .tbl {
+        overflow: scroll;
+        display: flex;
+        justify-content: flex-start;
+    }
 }
