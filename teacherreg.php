@@ -79,7 +79,7 @@ if (isset($_REQUEST['mode'])) {
 
                     <ion-icon name="bookmarks"></ion-icon>
                     <select class="studname" name="groupName">
-                        <option> GROUPS</option>
+                        <option> Subjects</option>
                         <option value=""></option>
                         <option value=""></option>
                         <option value=""></option>
@@ -92,9 +92,21 @@ if (isset($_REQUEST['mode'])) {
 
 
             <div class="inputname">
-                <span class="span2">
+                <span class="span1 book1">
                     <ion-icon name="accessibility"></ion-icon>
                     <input type="number" placeholder=" Enter your age" class="allname" name="teachAge">
+                </span>
+                <span class="span1 board">
+
+                    <ion-icon name="bookmarks"></ion-icon>
+                    <select class="studname" name="groupName">
+                        <option> classes</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
                 </span>
             </div>
 
