@@ -164,7 +164,34 @@ $(document).ready(function () {
             showingClass=false;
         }
     });
+    var count=1;
+    //todo-- add row on teacher page on clicking the button
+    $('#addRow').click(function(){
+        var v=$('#selectionSection').clone().appendTo('#cloningSpace');
+        $(v).removeClass('d-none');
+    });
+    // $('i.fa-square-minus').click(function(){
+    //     $(this).parent().remove();
+    // });
+    
+
+    //!--------------not working------------------------------------------- i dont know why
+    // var element=$('<div class="abc"><i class="fa-regular fa-square-minus"></i></div>');
+    // element.click(function(){
+    //     console.log("hello");
+    // });
+    // $('div.abc').click(function(){
+    //     console.log("hello");
+    //     $(this).parent().remove();
+    // });
+    // $('.studname').click(function(){
+    //     var ind=$(this).index();
+    //     console.log(ind);
+    // })
     
 
 });
+function del(v){
+    $(v).parent().remove();
+}
 

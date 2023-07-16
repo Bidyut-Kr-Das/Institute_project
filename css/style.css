@@ -1103,6 +1103,7 @@ body {
 
 .heading {
     /* margin-top: 14rem; */
+    height: 48rem;
     background: #EEEEEE;
     width: 50rem;
     padding: 2.5rem;
@@ -1110,6 +1111,7 @@ body {
     border-top: 0.5rem solid #00ADB5;
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5), -0.5rem 0.5rem 0.5rem rgba(228, 218, 218, 0.5);
     transform: scale(1.2);
+    overflow-y: auto;
 }
 
 .heading h2 {
@@ -1132,6 +1134,7 @@ input[type=number] {
     appearance: textfield;
 }
 
+.inputnamenew,
 .inputname {
     display: flex;
     flex-direction: row;
@@ -1158,6 +1161,7 @@ input[type=number] {
 }
 
 .inputname ion-icon,
+.inputnamenew ion-icon,
 .fa-person {
     padding: 0.5rem 0.7rem;
     position: absolute;
@@ -1167,7 +1171,7 @@ input[type=number] {
 
 .studname {
     width: 100%;
-    padding: 0.5rem 0 0.5rem 2.5rem;
+    padding: 0.5rem 0 0.5rem 3rem;
 }
 
 .span1 {
@@ -1192,6 +1196,7 @@ input[type=number] {
 }
 
 .inputname ion-icon,
+.inputnamenew ion-icon,
 .fa-person {
     position: absolute;
     font-size: 1.1rem;
@@ -1348,6 +1353,7 @@ input[type=number] {
         position: relative;
     }
 
+    .inputnamenew,
     .inputname {
         display: flex;
         flex-direction: column;
@@ -1976,4 +1982,87 @@ label {
         display: flex;
         justify-content: flex-start;
     }
+}
+
+.fa-square-plus {
+    font-size: 2.6rem;
+    color: green;
+    cursor: pointer;
+}
+
+/* .fa-square-plus:hover {
+    background-color: green;
+    color: white;
+
+} */
+#tooltip {
+    position: relative;
+    width: 10rem;
+}
+
+#tooltiptext {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: black;
+    border-radius: .5rem;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: .5rem;
+
+}
+
+#tooltiptext::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    border: .5rem solid black;
+    transform: rotate(45deg) translate(16%, -60%);
+    /* transform: ; */
+
+}
+
+#tooltip:hover #tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    /* right: 100%; */
+}
+
+#cloningSpace {
+    /* overflow-y: auto;
+    overflow-x: unset; */
+    /* height: */
+}
+
+.fa-square-minus {
+    position: absolute;
+    top: .5rem;
+    right: -5%;
+    font-size: 2rem;
+    color: red;
+    z-index: 5;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* .fa-square-minus::before {
+    pointer-events: none;
+} */
+.abc {
+    position: absolute;
+}
+
+#selectionSection {
+    position: relative;
+}
+
+.filterAnchor:link,
+.filterAnchor:visited,
+.filterAnchor:hover,
+.filterAnchor:active {
+    text-decoration: none;
 }

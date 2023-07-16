@@ -1,11 +1,19 @@
 <?php
-include("header.php");
+include("nav.php");
 session_start();
-if (empty($_SESSION['id'])) {
-    @header("location:index.php?msg=unknown Admin");
-    exit();
+$addingTeacher = false;
+$edittingTeacher = false;
+// if (empty($_SESSION['id'])) {
+//     @header("location:index.php?msg=unknown Admin");
+//     exit();
+// }
+if (isset($_REQUEST['addTeach'])) {
+    $addingTeacher = true;
+} else {
+    $edittingTeacher = true;
+    $teacherId;
 }
-if (isset($_REQUEST['mode'])) {
+if (isset($_REQUEST['mode1'])) {
     $teachFName = $_REQUEST['teachFName'];
     $teachLName = $_REQUEST['teachLName'];
     $teacherFullName = $teachFName . " " . $teachLName; //done
@@ -13,6 +21,9 @@ if (isset($_REQUEST['mode'])) {
     $teachMobile = $_REQUEST['teachMobile']; //done
     $teachGender = $_REQUEST['teachGender']; //done
     $teachHQ = $_REQUEST['teachHQ']; //done
+    $teachClass = $_REQUEST['class-add--form'];
+    $teachSubject = $_REQUEST['subject-add--form'];
+
     $groupId = $_REQUEST['groupName']; //done
     $teachAge = $_REQUEST['teachAge']; //done
     $query = "INSERT INTO `teachermaster` SET  `name`='$teacherFullName',
@@ -23,17 +34,39 @@ if (isset($_REQUEST['mode'])) {
                                                                                             `gender`='$teachGender',
                                                                                             `age`='$teachAge' ";
     $result = mysqli_query($connection, $query);
-    if ($result) {
-        @header("location:group_add.php?msg=Teacher Successfully Added");
-    }
+    $query = "SELECT  t.teacher_Id FROM `teachermaster`as t WHERE `name`='$teacherFullName' AND `phone_Number`='$teachMobile' ";
+    $result = mysqli_query($connection, $query);
+    $row = mysqli_fetch_array($result);
+    $teachId = $row['teacher_Id'];
+    // echo "<script>alert('".$teachId."')</script>";
 
+    for ($i = 0; $i < (count($teachClass)); $i++) {
+        $classId = $teachClass[$i];
+        $subjectId = $teachSubject[$i];
+        echo "<script>alert('" . $classId . "')</script>";
+        if ($classId == "NULL" && $subjectId == "NULL") {
+            continue;
+        } else {
+            $query = "INSERT INTO `teach-cls-subj` SET  `teacherId`='$teachId',
+                                                                                               `subjectId`='$subjectId',
+                                                                                               `classId`='$classId' ";
+            $result = mysqli_query($connection, $query);
+        }
+    }
+    if ($result) {
+        // @header("location:group_add.php?msg=Teacher Successfully Added");
+    }
 }
 ?>
 <div class="heading">
     <h2>Teacher's Registation Form</h2>
     <div class="form">
         <form>
-            <input type="hidden" name="mode" value="1">
+            <input type="hidden" name="<?php if ($addingTeacher) {
+                                            echo "mode1";
+                                        } else {
+                                            echo "mode2";
+                                        } ?>" value="1">
             <div class="inputname">
                 <span class="span1 fname">
                     <ion-icon name="person"></ion-icon>
@@ -74,54 +107,53 @@ if (isset($_REQUEST['mode'])) {
                     <ion-icon name="book"></ion-icon>
                     <input type="number" placeholder=" Higher Qualification" class="studname" name="teachHQ">
                 </span>
-
-                <span class="span1 board">
-
-                    <ion-icon name="bookmarks"></ion-icon>
-                    <div class="studname openSubj--k">Select Subject</div>
-                    <div class="drop--downSubj--k">
-                        <?php 
-                        $query="SELECT * FROM `subject_master`ORDER BY `sub_Id`";
-                        $res=mysqli_query($connection,$query);
-                        while($rowarr=mysqli_fetch_array($res)){      
-                        ?>
-                        <div class="checkboxDiv--k">
-                            <input type="checkbox" class="checkbox--form--stud" value="<?php echo $rowarr['sub_Id'];?>" name="group-add--form[]" id="<?php echo $rowarr['sub_Name'];?>">
-                            <label for="<?php echo $rowarr['sub_Name'];?>"><?php echo $rowarr['sub_Name'];?></label>
-                        </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </span>
-            </div>
-
-
-
-            <div class="inputname">
                 <span class="span1 book1">
                     <ion-icon name="accessibility"></ion-icon>
                     <input type="number" placeholder=" Enter your age" class="allname" name="teachAge">
                 </span>
-                <span class="span1 board">
 
+
+            </div>
+
+
+
+            <div class="inputnamenew d-none" id="selectionSection">
+                <span class="span1 board">
                     <ion-icon name="bookmarks"></ion-icon>
-                    <div class="studname openClass--k">Select Class</div>
-                    <div class="drop--downClass--k">
-                        <?php 
-                        $query="SELECT * FROM `classmaster`ORDER BY `classId`";
-                        $res=mysqli_query($connection,$query);
-                        while($rowarr=mysqli_fetch_array($res)){      
+                    <select name="class-add--form[]" id="" class="studname" required>
+                        <option value="NULL">Select Class</option>
+
+                        <?php
+                        $query = "SELECT * FROM `classmaster`ORDER BY `classId`";
+                        $res = mysqli_query($connection, $query);
+                        while ($rowarr = mysqli_fetch_array($res)) {
                         ?>
-                        <div class="checkboxDiv--k">
-                            <input type="checkbox" class="checkbox--form--stud" value="<?php echo $rowarr['classId'];?>" name="group-add--form[]" id="<?php echo $rowarr['className'];?>">
-                            <label for="<?php echo $rowarr['className'];?>"><?php echo $rowarr['className'];?></label>
-                        </div>
+
+                            <option value="<?php echo $rowarr['classId']; ?>"><?php echo $rowarr['className']; ?></option>
                         <?php
                         }
                         ?>
-                    </div>
+                    </select>
                 </span>
+                <span class="span1 board">
+                    <ion-icon name="bookmarks"></ion-icon>
+                    <select name="subject-add--form[]" id="" class="studname" required>
+                        <option value="NULL">Select Subject</option>
+
+                        <?php
+                        $query = "SELECT * FROM `subject_master`ORDER BY `sub_Id`";
+                        $res = mysqli_query($connection, $query);
+                        while ($rowarr = mysqli_fetch_array($res)) {
+                        ?>
+
+                            <option value="<?php echo $rowarr['sub_Id']; ?>"><?php echo $rowarr['sub_Name']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </span>
+                <i class="fa-regular fa-square-minus" onclick="del(this)"></i>
+                <!-- <span class="removeBtn"></span> -->
             </div>
 
             <!-- <div class="inputname">
@@ -133,6 +165,11 @@ if (isset($_REQUEST['mode'])) {
                 <ion-icon name="call"></ion-icon>
                 <input type ="number" placeholder=" Guardian's Ph.No" class="allname">
             </div> -->
+            <div id="cloningSpace"></div>
+            <div id="tooltip">
+                <i class="fa-solid fa-square-plus" id="addRow"></i>
+                <span id="tooltiptext">Add Row</span>
+            </div>
 
             <div class="inputname">
                 <span class="span2">

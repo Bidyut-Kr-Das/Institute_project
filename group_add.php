@@ -2,7 +2,7 @@
 include("connection/connection.php");
 include("nav.php");
 session_start();
-if(empty($_SESSION['id'])){
+if (empty($_SESSION['id'])) {
     @header("location:index.php?msg=unknown Admin");
     exit();
 }
@@ -11,7 +11,7 @@ $edittingGroup = false;
 $deletingGroup = false;
 $groupName = "";
 $deleteGroupName = "";
-$checkedSubj=array();
+$checkedSubj = array();
 
 if (isset($_REQUEST['addGroup'])) {
     $addingGroup = true;
@@ -33,30 +33,38 @@ if (isset($_REQUEST['editGroup'])) {
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
     $groupName = $row['groupName'];
-    $query="SELECT * FROM `group-subj` WHERE  `groupId`='$groupId'";
-    $result=mysqli_query($connection,$query);
-    
-    while($row=mysqli_fetch_array($result)){
-        array_push($checkedSubj,$row['subjectId']);
+    $query = "SELECT * FROM `group-subj` WHERE  `groupId`='$groupId'";
+    $result = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_array($result)) {
+        array_push($checkedSubj, $row['subjectId']);
     }
 }
 //This adds a group 
 if (isset($_REQUEST['add'])) {
     $newgroupName = $_REQUEST['groupName'];
-    $subjects=$_REQUEST['subjectcheck'];
+    $subjects = $_REQUEST['subjectcheck'];
     //inserting new group
     $query = "INSERT INTO `groupmaster` SET `groupName`='$newgroupName'";
     $result = mysqli_query($connection, $query);
     //fetching the newly inserted group to get the id
     $query = "SELECT * FROM `groupmaster` WHERE `groupName`='$newgroupName'";
-    $result=mysqli_query($connection,$query);
-    $rowarr2=mysqli_fetch_array($result);
-    $recentGroupId=$rowarr2['groupId'];
-    foreach($subjects as $subj){
+    $result = mysqli_query($connection, $query);
+    $rowarr2 = mysqli_fetch_array($result);
+    $recentGroupId = $rowarr2['groupId'];
+    $baseFee = 0;
+    foreach ($subjects as $subj) {
         //echo "<script>alert(' " . $subj .  " ')</script>";
-        $query1="INSERT INTO `group-subj` SET `groupId`='$recentGroupId',`subjectId`='$subj' ";
-        $result=mysqli_query($connection,$query1);
+        $query = "SELECT s.baseFee FROM `subject_master` as s WHERE `sub_Id`='$subj' ";
+        $result = mysqli_query($connection, $query);
+        $row3 = mysqli_fetch_array($result);
+        $baseFee += $row3['baseFee'];
+
+        $query1 = "INSERT INTO `group-subj` SET `groupId`='$recentGroupId',`subjectId`='$subj' ";
+        $result = mysqli_query($connection, $query1);
     }
+    $query = "UPDATE `groupmaster` SET `estimatedFee`='$baseFee' WHERE  `groupId`='$recentGroupId' ";
+    $result = mysqli_query($connection, $query);
     if ($result) {
         header("location:group_add.php?msg=Successfully added group");
     }
@@ -64,29 +72,34 @@ if (isset($_REQUEST['add'])) {
 //This edits group
 if (isset($_REQUEST['edit'])) {
     $newgroupName = $_REQUEST['groupName'];
-    $subjects=$_REQUEST['subjectcheck'];
+    $subjects = $_REQUEST['subjectcheck'];
 
     $groupId = $_REQUEST['edit'];
     $query = "UPDATE `groupmaster` SET `groupName`='$newgroupName' WHERE `groupId`='$groupId'";
     $result = mysqli_query($connection, $query);
-    foreach($subjects as $subj){
-        if(in_array($subj,$checkedSubj)){
+    $baseFee = 0;
+    foreach ($subjects as $subj) {
+        if (in_array($subj, $checkedSubj)) {
             /*checks if newly selected subject is present in the data base given subject list 
             if it is present in the list then we will remove the subject from the array */
-            $index=array_search($subj,$checkedSubj);
-            array_splice($checkedSubj,$index,1);
-            
+            $index = array_search($subj, $checkedSubj);
+            array_splice($checkedSubj, $index, 1);
+        } else {
+            $query = "INSERT INTO `group-subj`SET `groupId`='$groupId',`subjectId`='$subj' ";
+            $result = mysqli_query($connection, $query);
         }
-        else{
-            $query="INSERT INTO `group-subj`SET `groupId`='$groupId',`subjectId`='$subj' ";
-            $result=mysqli_query($connection,$query);
-        }
+        $query = "SELECT s.baseFee FROM `subject_master` as s WHERE `sub_Id`='$subj' ";
+        $result = mysqli_query($connection, $query);
+        $rowarr = mysqli_fetch_array($result);
+        $baseFee += $rowarr['baseFee'];
     }
-    foreach($checkedSubj as $value){
-        $query="DELETE FROM `group-subj`WHERE `groupId`='$groupId' AND `subjectId`='$value' ";
-        $res=mysqli_query($connection,$query);
+    foreach ($checkedSubj as $value) {
+        $query = "DELETE FROM `group-subj`WHERE `groupId`='$groupId' AND `subjectId`='$value' ";
+        $res = mysqli_query($connection, $query);
     }
-    if ($result ) {
+    $query = "UPDATE `groupmaster` SET `estimatedFee`='$baseFee' WHERE  `groupId`='$groupId' ";
+    $result = mysqli_query($connection, $query);
+    if ($result) {
         @header("location:group_add.php?msg=Group updated successfully");
     }
 }
@@ -121,7 +134,7 @@ $result1 = mysqli_query($connection, $query1);
         <?php
         // --------------------------------------------main cards---------------------------------------//
         while ($row = mysqli_fetch_array($result1)) {
-            ?>
+        ?>
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
@@ -132,7 +145,7 @@ $result1 = mysqli_query($connection, $query1);
                             $result2 = mysqli_query($connection, $query2);
                             // $row2 = mysqli_fetch_array($result2);
                             $rownumber = mysqli_num_rows($result2);
-                            
+
                             ?>
                         </h5>
                         <a href="#" class="subject">
@@ -140,16 +153,14 @@ $result1 = mysqli_query($connection, $query1);
                         </a>
                     </div>
                     <div class="buttonPart">
-                        <a class="btn btn-primary editGroupBtn" id="<?php echo $groupId1; ?>"><i
-                                class="fa-solid fa-pen"></i>
+                        <a class="btn btn-primary editGroupBtn" id="<?php echo $groupId1; ?>"><i class="fa-solid fa-pen"></i>
                             Edit</a>
-                        <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i
-                                class="fa-solid fa-trash"></i>
+                        <div class="deleteGrpBtn deleteBtn" deleteGrpId="<?php echo $groupId1; ?>"><i class="fa-solid fa-trash"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php
+        <?php
         }
         ?>
     </div>
@@ -157,7 +168,7 @@ $result1 = mysqli_query($connection, $query1);
 <?php
 //------------------------------------popup-----------------------------------------//
 if ($addingGroup || $edittingGroup) {
-    ?>
+?>
     <div class="blackwindow">
         <div class="popupMain">
             <div class="popupBody">
@@ -165,33 +176,32 @@ if ($addingGroup || $edittingGroup) {
                     <div class="groupNameBody">
                         <?php
                         if ($edittingGroup) {
-                            ?>
+                        ?>
                             <div class="heading1">
                                 Edit <span class="headingsub1"> Group </span>
                             </div>
-                            <?php
+                        <?php
                         } else {
-                            ?>
+                        ?>
                             <div class="heading1">
                                 Add <span class="headingsub1"> New Group </span>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                         <div class="inputField">
                             <div class="groupNamePopup">Enter group Name:</div>
-                            <input type="text" name="groupName" id="" value="<?php echo $groupName; ?>"
-                                class="groupNamefield" required autocomplete="off" />
+                            <input type="text" name="groupName" id="" value="<?php echo $groupName; ?>" class="groupNamefield" required autocomplete="off" />
 
                             <?php
                             if ($edittingGroup) {
-                                ?>
+                            ?>
                                 <input type="hidden" name="edit" value="<?php echo $groupId; ?>" />
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <input type="hidden" name="add" value="true" />
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
@@ -206,18 +216,16 @@ if ($addingGroup || $edittingGroup) {
                                     while ($rowarr = mysqli_fetch_array($result2)) {
                                         $subjName = $rowarr['sub_Name'];
                                         $subjectId = $rowarr['sub_Id'];
-                                        ?>
+                                    ?>
                                         <div class="checkBoxDiv">
-                                            <input type="checkbox" class="subjectCheckbox" name="subjectcheck[]"
-                                                <?php 
-                                                    if(in_array($subjectId,$checkedSubj)){
-                                                        echo "checked";
-                                                    }
-                                                ?>
-                                                id="<?php echo $subjName; ?>" value="<?php echo $subjectId; ?>">
-                                            <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName" > <?php echo $subjName; ?> </label>
+                                            <input type="checkbox" class="subjectCheckbox" name="subjectcheck[]" <?php
+                                                                                                                    if (in_array($subjectId, $checkedSubj)) {
+                                                                                                                        echo "checked";
+                                                                                                                    }
+                                                                                                                    ?> id="<?php echo $subjName; ?>" value="<?php echo $subjectId; ?>">
+                                            <label for="<?php echo $subjName; ?>" id="SubjCheckBoxName"> <?php echo $subjName; ?> </label>
                                         </div>
-                                        <?php
+                                    <?php
                                     }
                                     ?>
                                     <!-- <div class="checkBoxDiv">
@@ -231,11 +239,11 @@ if ($addingGroup || $edittingGroup) {
                                 </div>
                             </div>
                             <input type="submit" value=<?php
-                            if ($edittingGroup) {
-                                echo "'Update'";
-                            } else {
-                                echo "'Add Group'";
-                            } ?> class="submitBtn" />
+                                                        if ($edittingGroup) {
+                                                            echo "'Update'";
+                                                        } else {
+                                                            echo "'Add Group'";
+                                                        } ?> class="submitBtn" />
                             <input type="button" value="Cancel" class="closeBtn closeBtnGrp">
                         </div>
                     </div>
@@ -243,17 +251,17 @@ if ($addingGroup || $edittingGroup) {
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 if ($deletingGroup) {
-    ?>
+?>
     <div class="blackwindow">
         <div class="popupMain">
             <div class="popupBody">
                 <form action="">
-                <div class="heading1DeleteModal">
-                    Delete <span class="headingsub1"> The Group? </span>
-                </div>
+                    <div class="heading1DeleteModal">
+                        Delete <span class="headingsub1"> The Group? </span>
+                    </div>
                     <div class="groupNameBody">
                         <div class="inputField">
 
@@ -267,7 +275,7 @@ if ($deletingGroup) {
                                     subjects
                                     inside
                                     this group</p>
-                            </div>   
+                            </div>
                         </div>
                         <div class="buttonDivDeleteModal">
                             <input type="hidden" name="delete" value="<?php echo $row1['groupId']; ?>" />
@@ -279,7 +287,7 @@ if ($deletingGroup) {
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 include("footer.php");
 ?>
