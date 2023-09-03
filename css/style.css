@@ -182,7 +182,9 @@ ion-icon {
 .subjectName {
     font-size: 3.7rem;
     pointer-events: none;
+    /* container-name: cardMargin; */
 }
+@container
 
 .modal {
     visibility: visible;
@@ -550,7 +552,7 @@ form {
 
     .cardHolder {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 90%);
+        grid-template-columns: repeat(auto-fit, aut);
         grid-gap: 2rem 0;
 
     }
